@@ -1,0 +1,113 @@
+COMMODITY NAV/DC VALUATION MODEL
+,,,,,,,,,,,,,,,,,
+COMPANY: OilCo Inc.,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+INPUTS,,,,,,,,,,,,,,,,,
+Reserves & Production,,,,,,,,,,,,,,,,,
+Proven Reserves (1P),150,MMboe,,,,,,,,,
+Probable Reserves (75,MMboe,,,,,,,,,
+2P Reserves,225,MMboe,,,,,,,,,
+Annual Production,20,MMboe,,,,,,,,,
+Reserve Life,11.3,Years=2P/Production,,,,,,,,
+,,,,,,,,,,,,,,,,,
+Price Assumptions,,,,,,,,,,,,,,,,,
+Current Oil Price,$75.00,/bbl,,,,,,,,,
+Year 1-2 Oil Price,$75.00,/bbl,,,,,,,,,
+Year 3-5 Oil Price,$70.00,/bbl,,,,,,,,,
+Terminal Oil Price,$65.00,/bbl,,,,,,,,,
+Long-term Gas Price,$3.50,/MMBtu,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+Cost Assumptions,,,,,,,,,,,,,,,,,
+Operating Cost,$28.00,/boe,,,,,,,,,
+Transportation,$5.00,/boe,,,,,,,,,
+Operating Costs,$33.00,/boe,=OpEx+Transport,,,,,,,,
+,,,,,,,,,,,,,,,,,
+Capital Expenditures,,,,,,,,,,,,,,,,,
+Year 1,$200,M,,,,,,,,,
+Year 2,$180,M,,,,,,,,,
+Year 3,$150,M,,,,,,,,,
+Year 4,$140,M,,,,,,,,,
+Year 5,$130,M,,,,,,,,,
+Terminal (per year),$120,M,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+Other Assumptions,,,,,,,,,,,,,,,,,
+Discount Rate (WACC),10.0%,,,,,,,,,,
+Tax Rate,21%,,,,,,,,,,
+Working Capital,% of Revenue,5%,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+PRODUCTION FORECAST,,,,,,,,,,,,,,,,,
+Year,Year 1,Year 2,Year 3,Year 4,Year 5,Terminal
+Production (MMboe),20.0,19.5,18.8,18.0,17.2,16.5
+Growth Rate,-2.5%,-3.6%,-4.3%,-4.4%,-4.1%,-4.0%
+,,,,,,,,,,,,,,,,,
+CASH FLOW PROJECTION,,,,,,,,,,,,,,,,,
+($ in millions),Year 1,Year 2,Year 3,Year 4,Year 5,Terminal
+Oil Price ($/bbl),75,75,70,70,70,65
+Revenue,1500,1463,1316,1260,1204,1073
+Operating Costs,-660,-644,-620,-594,-568,-545
+Gross Profit,840,819,696,666,636,528
+Operating Margin,56%,56%,53%,53%,53%,49%
+EBITDA,840,819,696,666,636,528
+EBITDA Margin,56%,56%,53%,53%,53%,49%
+D&A,150,145,140,135,130,125
+EBIT,690,674,556,531,506,403
+Tax (21%),-145,-142,-117,-111,-106,-85
+NOPAT,545,532,439,420,400,318
+,,,,,,,,,,,,,,,,,
+Less: CAPEX,-200,-180,-150,-140,-130,-120
+Less: Change in NWC,-5,-2,-4,-3,-3,-3
+Free Cash Flow,340,350,285,277,267,195
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+DISCOUNTED CASH FLOWS,,,,,,,,,,,,,,,,,
+Discount Factor,0.909,0.826,0.751,0.683,0.621,0.621
+PV of FCF,309,289,214,189,166,121
+Sum of PV (Years 1-5),1167,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+TERMINAL VALUE,,,,,,,,,,,,,,,,,
+Terminal FCF (Year 7),195,,,,,,,,,,,,
+Terminal Value,2745,=TV/(WACC-g),,,,,,,,,
+Growth Rate,2.0%,,,,,,,,,,,
+PV of Terminal Value,1705,=TV*Discount Factor,,,,,,,,
+,,,,,,,,,,,,,,,,,
+ENTERPRISE & EQUITY VALUE,,,,,,,,,,,,,
+PV of FCF (Years 1-5),1167,,,,,,,,,,,,
+PV of Terminal Value,1705,,,,,,,,,,,,
+Enterprise Value,2872,,,,,,,,,,,,
+Less: Net Debt,-800,,,,,,,,,,,,
+Equity Value,2072,,,,,,,,,,,,
+Shares Outstanding,100,M,,,,,,,,,,,,
+Implied Share Price,$20.72,,,,,,,,,,,,
+Current Share Price,$18.50,,,,,,,,,,,,
+Upside/(Downside),12.0%,=(Implied-Current)/Current,,,,,,,,
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+SENSITIVITY ANALYSIS,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+Oil Price vs WACC,,,,,,,,,,,,,,,,,
+Oil Price,WACC,WACC,WACC,WACC,WACC
+($/bbl),8.0%,9.0%,10.0%,11.0%,12.0%
+$55,$12.50,$10.20,$8.20,$6.40,$4.80
+$60,$17.80,$15.00,$12.50,$10.20,$8.20
+$65,$23.20,$19.80,$16.80,$13.80,$11.20
+$70,$28.50,$24.50,$20.80,$17.40,$14.20
+$75,$33.80,$29.20,$25.00,$20.90,$17.20
+$80,$39.20,$33.80,$29.10,$24.50,$20.20
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+RESOURCE METRICS,,,,,,,,,,,,,,,,,
+Valuation Metric,Value,Formula
+EV/2P,$12.77,=EV/2P Reserves
+EV/Production,$143.60,=EV/Annual Production
+Reserve Life,11.3,Years
+Production Decline,4.0%,Annual average
+,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+COMPARABLE ANALYSIS,,,,,,,,,,,,,,,,,
+Company,EV/2P,EV/EBITDA,P/NAV
+Company A,$15.00,8.5x,1.4x
+Company B,$12.00,7.2x,1.1x
+Company C,$18.00,9.8x,1.6x
+Median,$15.00,8.5x,1.4x
+Target Implied,=Median*Reserves=$3375M,,,,,,,,

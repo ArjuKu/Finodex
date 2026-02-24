@@ -1,0 +1,133 @@
+FORWARD PRICE CALCULATOR
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+INPUTS,,,,,,,,,,,,,,,,,,
+Assumptions,,,,,,,,,,,,,,,,,,
+Spot Price,$75.00,per barrel,,,,,,,,,,
+Risk-Free Rate,4.50%,annualized,,,,,,,,,,
+Storage Cost,2.00%,as % of spot,,,,,,,,,,
+Convenience Yield,1.00%,as % of spot,,,,,,,,,,
+Time to Maturity,1.0,years,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+COST OF CARRY MODEL,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Component,Value,Notes
+Spot Price,$75.00,Current price
+Risk-Free Rate,4.50%,Financing cost
+Storage Cost,2.00%,Cost to hold
+Convenience Yield,-1.00%,Benefit of holding
+Net Carry Cost,5.50%,=r+u-y
+,,,,,,,,,,,,,,,,,,
+Forward Price,$79.21,=S*e^(r+u-y)*t,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+FORWARD PRICE BY TIME,,,,,,,,,,,,,,,,,,
+Maturity,Days,Forward Price,% Premium
+Spot,0,$75.00,0.0%
+1 Month,30,$75.34,0.5%
+3 Month,92,$76.05,1.4%
+6 Month,183,$77.12,2.8%
+9 Month,274,$78.21,4.3%
+12 Month,365,$79.21,5.6%
+18 Month,548,$81.37,8.5%
+24 Month,730,$83.62,11.5%
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+CONTANGO/BACKWARDATION CALCULATOR,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Spot Price,$75.00,,,,,,,,,,,,,,,
+Forward Price (1yr),$79.21,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Relationship,CONTANGO,,,,,,,,,,,,,,,
+Premium,$4.21,=Forward-Spot,,,,,,,,,,,,,,,
+% Premium,5.61%,=(F-S)/S,,,,,,,,,,,,,,,
+Annualized Roll Cost,5.61%,=Premium/Time,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+COMMODITY-SPECIFIC CALCULATORS,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+OIL (WTI),,,,,,,,,,,,,,,,,
+Spot Price,$75.00,/bbl,,,,,,,,,,,,
+Storage Cost,$2.50,/bbl,3.3%,,,,,,,,,,,
+Financing (4.5%),$3.38,/bbl,,,,,,,,,,,,
+Convenience Yield,-$0.75,/bbl,-1.0%,,,,,,,,,,,
+Net Carry,$5.13,/bbl,6.8%,,,,,,,,,,,
+1-Year Forward,$81.47,/bbl=Spot+Carry,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+NATURAL GAS,,,,,,,,,,,,,,,,,,,,
+Spot Price,$3.50,/MMBtu,,,,,,,,,,,,
+Injection Storage,$0.35,/MMBtu,10%,,,,,,,,,,,
+Withdrawal Value,$0.50,/MMBtu,14%,,,,,,,,,,,,
+Financing (4.5%),$0.16,/MMBtu,,,,,,,,,,,,
+Seasonal Spread,12 months,$1.20,/MMBtu,,,,,,,,,,,,
+Summer-Winter Spread,$0.80,/MMBtu,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+GOLD,,,,,,,,,,,,,,,,,,,,
+Spot Price,$2000,/oz,,,,,,,,,,,,
+Storage Cost,$20,/oz,1.0%,,,,,,,,,,,
+Financing (4.5%),$90,/oz,,,,,,,,,,,,
+Convenience Yield,-$25,/oz,-1.3%,,,,,,,,,,,
+Net Carry,$85,/oz,4.3%,,,,,,,,,,,
+1-Year Forward,$2112,/oz,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+CONVENIENCE YIELD CALCULATOR,,,,,,,,,,,,,,,,,,
+From Market Forward Prices,,,,,,,,,,,,,,,,,,
+Input,,,,,,,,,,,,,,,,,,
+Spot Price,$75.00,,,,,,,,,,,,,,,
+Forward Price (1yr),$78.00,,,,,,,,,,,,,,,
+Risk-Free Rate,4.50%,,,,,,,,,,,,,,,,
+Time (years),1,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Calculated,,,,,,,,,,,,,,,,,,
+Implied Carry Cost,6.00%,=ln(78/75),,,,,,,,,,,,,
+Convenience Yield,1.50%,=r - Implied Carry,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+OPTIONS PRICING - CALL OPTION EXAMPLE,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Input Parameters,,,,,,,,,,,,,,,,,,
+Underlying Spot Price,$75.00,,,,,,,,,,,,,,,
+Strike Price,$80.00,,,,,,,,,,,,,,,
+Time to Maturity,1,years,,,,,,,,,,,
+Volatility (Annual),25%,,,,,,,,,,,,,,,,
+Risk-Free Rate,4.50%,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Black-Scholes Result,,,,,,,,,,,,,,,,,,
+d1,0.19,=(ln(S/K)+(r+v^2/2)*t)/(v*sqrt(t)),,,,,,,,,,,,,
+d2,-0.06,=d1-v*sqrt(t),,,,,,,,,,,,,,,,
+N(d1),0.575,Cumulative normal,,,,,,,,,,,,,,,
+N(d2),0.476,Cumulative normal,,,,,,,,,,,,,,,
+Call Price,$6.70,=S*N(d1)-K*e^(-rt)*N(d2),,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Greeks,,,,,,,,,,,,,,,,,,
+Delta,0.575,Change per $1 move,,,,,,,,,,,,,,,
+Gamma,0.027,Delta change per $1,,,,,,,,,,,,,,,
+Vega,0.26,Price change per 1% vol,,,,,,,,,,,,,,,
+Theta,-0.02,Time decay per day,,,,,,,,,,,,,,,
+Rho,0.20,Change per 1% rate,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+CALENDAR SPREAD EXAMPLE,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Month,Price,Spread vs Spot
+March 2024,$75.50,$0.50
+June 2024,$76.50,$1.50
+September 2024,$77.50,$2.50
+December 2024,$78.50,$3.50
+March 2025,$79.50,$4.50
+,,,,,,,,,,,,,,,,,,
+Spread Analysis,,,,,,,,,,,,,,,,,,
+Mar-Jun Spread,$1.00,Contango steepening
+Jun-Sep Spread,$1.00,Seasonal pattern
+Mar-Dec Spread,$3.00,Annual roll cost
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+HEDGE EFFECTIVENESS,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Correlation (Spot vs Futures),0.95,Historical correlation
+Hedge Effectiveness,90.25%,=Correlation^2
+Hedge Ratio,0.95,=Correlation*(StdS/StdF)
+,,,,,,,,,,,,,,,,,,

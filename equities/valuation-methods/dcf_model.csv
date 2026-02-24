@@ -1,0 +1,93 @@
+DCF VALUATION MODEL
+,,,,,,,,,,,,,,,,,,,
+COMPANY: TechCorp Inc.,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+INPUTS,,,,,,,,,,,,,,,,,,,
+Assumptions,,,,,,,,,,,,,,,,,,,
+Current Stock Price,$45.00,,,,,,,,,,,,,,,,,,
+Shares Outstanding (M),500,,,,,,,,,,,,,,,,,,
+Beta,1.20,,,,,,,,,,,,,,,,,,
+Risk-Free Rate,4.50%,,,,,,,,,,,,,,,,,,,
+Market Risk Premium,6.00%,,,,,,,,,,,,,,,,,,,
+Cost of Equity (CAPM),11.70%,=Rf+Beta*MRP,,,,,,,,,,,,,,,,,,
+Cost of Debt (Pre-tax),5.50%,,,,,,,,,,,,,,,,,,,
+Tax Rate,21.00%,,,,,,,,,,,,,,,,,,,
+Cost of Debt (After-tax),4.35%,=Cost of Debt*(1-Tax),,,,,,,,,,,,,,,,,,,
+WACC,9.60%,=We*Re+Wd*Rd,,,,,,,,,,,,,,,,,,
+Terminal Growth Rate,3.00%,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+Capital Structure,,,,,,,,,,,,,,,,,,,
+Market Value of Equity,22500,=Share Price * Shares,,,,,,,,,,,,,,,,,,
+Market Value of Debt,7500,,,,,,,,,,,,,,,,,,
+Total Capital,30000,,,,,,,,,,,,,,,,,,
+Equity Weight,75.00%,,,,,,,,,,,,,,,,,,,
+Debt Weight,25.00%,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+REVENUE PROJECTIONS,,,,,,,,,,,,,,,,,,,
+($ in millions),Base,Year 1,Year 2,Year 3,Year 4,Year 5
+Revenue,10000,11000,12100,13310,14641,16105
+Growth Rate,N/A,10%,10%,10%,10%,10%
+,,,,,,,,,,,,,,,,,,,
+INCOME STATEMENT PROJECTIONS,,,,,,,,,,,,,,,,,,,
+($ in millions),Base,Year 1,Year 2,Year 3,Year 4,Year 5
+Revenue,10000,11000,12100,13310,14641,16105
+COGS,-6000,-6600,-7260,-7986,-8785,-9663
+Gross Profit,4000,4400,4840,5324,5856,6442
+Gross Margin,40%,40%,40%,40%,40%,40%
+Operating Expenses,-1800,-1980,-2178,-2396,-2635,-2899
+EBIT,2200,2420,2662,2928,3221,3543
+EBIT Margin,22%,22%,22%,22%,22%,22%
+Taxes (21%),-462,-508,-559,-615,-677,-744
+NOPAT,1738,1912,2103,2313,2546,2799
+,,,,,,,,,,,,,,,,,,,
+FREE CASH FLOW CALCULATION,,,,,,,,,,,,,,,,,,,
+($ in millions),Base,Year 1,Year 2,Year 3,Year 4,Year 5
+NOPAT,1738,1912,2103,2313,2546,2799
+Add: D&A,500,550,605,666,732,805
+Less: CapEx,-600,-660,-726,-799,-879,-967
+Less: Change in NWC,-200,-220,-242,-266,-293,-322
+FCFF,1438,1582,1742,1914,2106,2315
+,,,,,,,,,,,,,,,,,,,
+DISCOUNTED CASH FLOWS,,,,,,,,,,,,,,,,,,,
+Period,1,2,3,4,5
+Discount Factor,0.912,0.832,0.759,0.693,0.632
+PV of FCFF,1312,1317,1322,1326,1463
+Sum of PV (Years 1-5),6740,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+TERMINAL VALUE CALCULATION,,,,,,,,,,,,,,,,,,,
+Terminal FCFF (Year 6),2385,=2315*(1+g),,,,,,,,,,,,,,,,
+Terminal Value,36373,=TV/(WACC-g),,,,,,,,,,,,,,,,
+PV of Terminal Value,22996,=TV*Discount Factor,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+ENTERPRISE & EQUITY VALUE,,,,,,,,,,,,,,,,,,,
+Sum of PV (Years 1-5),6740,,,,,,,,,,,,,,,,
+PV of Terminal Value,22996,,,,,,,,,,,,,,,,
+Enterprise Value,29736,,,,,,,,,,,,,,,,
+Less: Net Debt,-7500,,,,,,,,,,,,,,,,
+Equity Value,37236,,,,,,,,,,,,,,,,
+Shares Outstanding (M),500,,,,,,,,,,,,,,,,
+Implied Share Price,$74.47,,,,,,,,,,,,,,,,
+Current Share Price,$45.00,,,,,,,,,,,,,,,,
+Upside/(Downside),65.5%,=(Implied-Current)/Current,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+SENSITIVITY ANALYSIS,,,,,,,,,,,,,,,,,,,
+WACC vs Terminal Growth Rate,,,,,,,,,,,,,
+WACC,2.0%,2.5%,3.0%,3.5%,4.0%
+8.60%,$87.30,$102.40,$125.50,$170.20,$280.50
+9.10%,$73.20,$84.50,$101.20,$132.80,$205.30
+9.60%,$62.50,$71.20,$83.80,$106.50,$156.20
+10.10%,$54.20,$61.10,$70.80,$87.30,$122.50
+10.60%,$47.60,$53.20,$60.80,$73.20,$99.80
+,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+COMPARABLE COMPANY ANALYSIS,,,,,,,,,,,,,,,,,,,
+Peer,PE,EV_EBITDA,EV_Revenue
+Company A,22.5x,14.2x,3.5x
+Company B,18.0x,12.5x,2.8x
+Company C,25.0x,15.8x,4.2x
+Median,22.5x,14.2x,3.5x
+,,,,,,,,,,,,,,,,,,,
+Target Metrics,,,,,,,,,,,,,,,,,,,
+Target P/E Implied Value,$56.25,=EPS*Median PE,,,,,,,,,,,,,,,,
+Target EV/EBITDA Implied Value,$28215,=EBITDA*Median Multiple,,,,,,,,,,,,,,,,
+Target EV/Revenue Implied Value,$35000,=Revenue*Median Multiple,,,,,,,,,,,,,,,,

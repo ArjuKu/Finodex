@@ -1,0 +1,16 @@
+Company,Ticker,Industry,Market_Cap_B,Enterprise_Value_B,Revenue_B,Revenue_Growth,EBITDA_B,EBITDA_Margin,Net_Income_B,EPS,PE_Ratio,PB_Ratio,PS_Ratio,EV_EBITDA,EV_Revenue,ROE,ROA,Debt_Equity,Dividend_Yield,Beta
+Apple Inc.,AAPL,Technology,3200,3100,385,8%,125,32%,97,6.15,33.5x,45.0x,8.3x,24.8x,8.1x,147%,28%,1.8,0.5%,1.28
+Microsoft Corp.,MSFT,Technology,2900,2850,245,15%,110,45%,85,11.20,33.8x,12.5x,11.8x,25.9x,11.6x,38%,20%,0.8,0.7%,1.18
+Alphabet Inc.,GOOGL,Technology,2100,2000,340,12%,105,31%,75,6.05,34.0x,6.5x,6.2x,19.0x,5.9x,25%,13%,0.5,0.0%,1.12
+Amazon.com Inc.,AMZN,Consumer Discretionary,1700,1750,580,12%,70,12%,60,5.65,28.5x,8.2x,2.9x,25.0x,3.0x,21%,5%,1.2,0.0%,1.22
+NVIDIA Corp.,NVDA,Technology,1500,1480,95,122%,45,47%,30,4.85,50.0x,45.0x,15.8x,32.9x,15.6x,65%,25%,0.4,0.0%,1.75
+Meta Platforms,META,Technology,950,920,135,25%,55,41%,40,16.20,28.5x,5.8x,7.0x,16.7x,6.8x,28%,15%,0.6,0.0%,1.28
+Tesla Inc.,TSLA,Automotive,750,780,95,25%,15,16%,8,2.50,85.0x,12.5x,7.9x,52.0x,8.2x,25%,4%,0.8,0.0%,2.05
+Berkshire Hathaway,BRK.B,Diversified,850,900,320,8%,90,28%,65,6.50,13.0x,1.4x,2.7x,10.0x,2.8x,10%,5%,0.3,0.0%,0.95
+JPMorgan Chase,JPM,Banking,550,570,160,10%,75,47%,50,18.20,11.0x,1.4x,3.4x,7.6x,3.6x,15%,1%,0.5,2.5%,1.15
+Johnson & Johnson,JNJ,Healthcare,380,400,85,4%,30,35%,18,7.50,22.0x,5.5x,4.5x,13.3x,4.7x,25%,10%,0.8,3.0%,0.62
+Procter & Gamble,PG,Consumer Staples,380,395,84,5%,25,30%,15,6.20,25.0x,7.5x,4.5x,15.8x,4.7x,30%,6%,0.9,2.4%,0.48
+Visa Inc.,V,Financial Services,520,525,30,12%,20,67%,17,8.15,30.0x,13.0x,17.3x,26.3x,17.5x,50%,25%,0.4,0.8%,1.05
+Home Depot,HD,Retail,340,365,155,4%,25,16%,18,7.80,18.5x,-25.0x,2.2x,14.6x,2.4x,-450%,8%,15.0,2.5%,1.08
+Chevron Corp.,CVX,Energy,280,310,200,10%,45,22%,35,18.50,10.5x,1.6x,1.4x,6.9x,1.6x,14%,6%,0.3,3.5%,1.02
+Eli Lilly,LLY,Healthcare,580,585,45,28%,18,40%,15,8.10,38.0x,50.0x,12.9x,32.5x,13.0x,130%,12%,2.0,1.2%,0.85

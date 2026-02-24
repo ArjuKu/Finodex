@@ -1,0 +1,21 @@
+Company,Ticker,Commodity,Market_Cap_B,Enterprise_Value_B,2P_Reserves,Production_Annual,Reserve_Life_Years,EV_2P_Per_Boe,EV_Production_Per_Boe,OpEx_Per_Unit,AISC_Per_Unit,CAPEX_Annual,FCF_M,PE_Ratio,EV_EBITDA,Net_Debt_B,Debt_EBITDA
+ExxonMobil,XOM,Oil & Gas,480,510,22000,4500,4.9,23.18,113.33,25,35,8000,12500,11.5,7.8,45,2.4
+Chevron,CVX,Oil & Gas,280,310,11000,3100,3.5,28.18,100.00,28,40,5500,7800,10.2,6.5,35,3.1
+ConocoPhillips,COP,Oil & Gas,140,155,6400,1600,4.0,24.22,96.88,22,32,3500,4200,12.5,8.2,18,2.8
+EOG Resources,EOG,Oil & Gas,72,78,3500,900,3.9,22.29,86.67,20,28,2200,2400,10.8,7.5,8,2.5
+Pioneer Natural Resources,PXD,Oil & Gas,55,60,2800,750,3.7,21.43,80.00,18,26,1800,1900,11.2,7.0,6,2.4
+Occidental Petroleum,OXY,Oil & Gas,45,55,8500,1200,7.1,6.47,45.83,32,45,3000,1200,14.5,10.5,18,5.2
+Devon Energy,DVN,Oil & Gas,28,32,2200,650,3.4,14.55,49.23,24,34,1500,850,9.8,6.8,5,3.2
+Diamondback Energy,FANG,Oil & Gas,32,35,1800,550,3.3,19.44,63.64,22,30,1400,1100,10.5,7.2,4,2.8
+EQT Corporation,EQT,Natural Gas,22,24,18000,6500,2.8,1.33,3.69,2.5,3.5,1800,2800,8.5,6.2,3,1.8
+Chesapeake Energy,CHK,Natural Gas,8,9,6000,2800,2.1,1.50,3.21,2.2,3.0,1200,950,7.2,5.5,2,2.5
+Antero Resources,AR,Natural Gas,7,8,15000,3800,3.9,0.53,2.11,2.0,2.8,1500,1200,8.0,5.8,3,2.2
+BHP Group,BHP,Diversified Mining,150,165,NA,NA,NA,NA,NA,15,18,6000,12000,14.5,9.2,18,1.5
+Rio Tinto,RIO,Diversified Mining,105,115,NA,NA,NA,NA,NA,14,17,5000,9500,12.8,8.5,15,1.4
+Freeport-McMoRan,FCX,Copper/Gold,60,68,NA,NA,NA,NA,NA,2.5,3.2,4000,4500,13.2,10.5,12,2.0
+Newmont,NEM,Gold,45,48,NA,NA,NA,NA,NA,1000,1200,2500,3200,18.5,12.5,8,1.8
+Barrick Gold,GOLD,Gold,38,42,NA,NA,NA,NA,NA,950,1150,2200,2800,16.8,11.2,6,1.6
+Agnico Eagle,AEM,Gold,12,13,NA,NA,NA,NA,NA,850,1050,800,1100,22.5,14.8,3,2.0
+Southern Copper,SCCO,Copper,75,80,NA,NA,NA,NA,NA,2.0,2.5,3500,5500,15.2,10.8,8,1.5
+Vale,VALE,Diversified Mining,55,62,NA,NA,NA,NA,NA,18,22,4500,6500,9.5,7.8,12,1.8
+Fortescue Metals,FMG,Iron Ore,45,48,NA,NA,NA,NA,NA,25,30,2500,3800,8.2,6.5,5,1.2
