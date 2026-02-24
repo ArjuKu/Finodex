@@ -1,6 +1,8 @@
 # Finodex
 
-Finance knowledge repository covering Banking, Equities, and Commodities. The objective is to build a rolodex containing the basics of Financial fields such as Banking, Equity Research, and Commodities. This is just a small side project I have started to equip myself with both financial and coding knowledge, seeing as I'm a beginner in both. Whether you have interviews or you just want to learn, Finodex is an open consideration. I'd love inputs from you all as well.
+Finance knowledge repository covering Banking, Equities, and Commodities. The objective is to build a comprehensive rolodex containing the basics of Financial fields, including banking, Equity Research, and Commodities. This is just a small side project I have started to equip myself with both financial and coding knowledge, seeing as I'm a beginner in both. Whether you have interviews or you just want to learn, Finodex is an open consideration. I'd love to hear your input as well.
+
+This is a product of vibe coding, and mixing in some basic Python, Excel, and practical/academic experience I have garnered in the finance field. My brother taught me the basics of opencode, and I am super excited about what can be done in this space. 
 
 ## Sections
 
