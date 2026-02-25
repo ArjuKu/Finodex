@@ -1,25 +1,32 @@
 """
-Net Interest Margin (NIM) Calculator
-====================================
-Calculates and analyzes Net Interest Margin for banks.
+================================================================================
+NET INTEREST MARGIN (NIM) CALCULATOR - TEMPLATE
+================================================================================
+
+What this does:
+    Calculates Net Interest Margin for a bank.
+    NIM = (Interest Income - Interest Expense) / Interest-Earning Assets
 
 USAGE:
-------
-1. Modify the INPUTS section with your bank's data
-2. Run the script
-3. Review NIM breakdown and rate sensitivity analysis
+    1. Modify the INPUTS section below with your bank's data
+    2. Run: python nim_calculator.py
+    3. Review NIM breakdown and rate sensitivity analysis
 
-NIM = (Interest Income - Interest Expense) / Interest-Earning Assets
+INPUTS TO MODIFY:
+    - earning_assets: Amount of interest-earning assets ($ millions)
+    - interest_income: Total interest income ($ millions)
+    - interest_expense: Total interest expense ($ millions)
+    - rates: Interest rates for different asset/liability types
+
+For help: See BANK_VALUATION_TUTORIAL.md
+================================================================================
 """
 
-import pandas as pd
-import numpy as np
-
 # =============================================================================
-# INPUTS - Modify these values for your bank
+# SECTION 1: INPUTS - Change these values for your bank
 # =============================================================================
 
-# Interest-Earning Assets (in $ millions)
+# Interest-Earning Assets ($ millions)
 cash_equivalents = 500
 investment_securities = 2000
 loans_commercial = 5000
@@ -27,176 +34,160 @@ loans_residential = 3000
 loans_consumer = 1500
 other_earning_assets = 500
 
+# Calculate total earning assets
 total_earning_assets = (cash_equivalents + investment_securities + 
                         loans_commercial + loans_residential + 
                         loans_consumer + other_earning_assets)
 
-# Interest-Bearing Liabilities (in $ millions)
+# Interest-Bearing Liabilities ($ millions)
 demand_deposits = 2000
 savings_deposits = 3000
 time_deposits = 3500
 short_term_borrowings = 1500
 long_term_debt = 2000
 
-total_interest_liabilities = (demand_deposits + savings_deposits + 
-                             time_deposits + short_term_borrowings + 
-                             long_term_debt)
+total_liabilities = (demand_deposits + savings_deposits + 
+                     time_deposits + short_term_borrowings + 
+                     long_term_debt)
 
-# Interest Rates (annual rates as decimals)
+# Interest Rates (annual, as decimals - e.g., 0.05 = 5%)
 rates = {
-    'cash_equivalents': 0.045,      # 4.5%
-    'investment_securities': 0.042,  # 4.2%
-    'loans_commercial': 0.065,      # 6.5%
-    'loans_residential': 0.060,     # 6.0%
-    'loans_consumer': 0.085,       # 8.5%
-    'other_earning': 0.050,        # 5.0%
-    'demand_deposits': 0.005,      # 0.5%
-    'savings_deposits': 0.025,     # 2.5%
-    'time_deposits': 0.045,        # 4.5%
-    'short_term_borrowings': 0.055, # 5.5%
-    'long_term_debt': 0.050        # 5.0%
+    'cash': 0.045,        # Cash equivalent yield (4.5%)
+    'securities': 0.042,   # Investment securities yield (4.2%)
+    'commercial_loans': 0.065,   # Commercial loan rate (6.5%)
+    'residential_loans': 0.060,  # Residential loan rate (6.0%)
+    'consumer_loans': 0.085,     # Consumer loan rate (8.5%)
+    'demand_deposits': 0.005,    # Demand deposit rate (0.5%)
+    'savings_deposits': 0.025,   # Savings account rate (2.5%)
+    'time_deposits': 0.045,      # Time deposit rate (4.5%)
+    'short_term_borrow': 0.055,  # Short-term borrowing rate (5.5%)
+    'long_term_debt': 0.050       # Long-term debt rate (5.0%)
 }
 
-# Rate Change Scenarios (basis points change)
-rate_scenarios = [ -200, -100, -50, 0, 50, 100, 200 ]
-
 # =============================================================================
-# CALCULATION ENGINE
+# SECTION 2: CALCULATION ENGINE
 # =============================================================================
 
 def calculate_interest_income():
-    """Calculate total interest income"""
+    """Calculate total interest income from each asset category"""
     income = {
-        'Cash & Equivalents': cash_equivalents * rates['cash_equivalents'],
-        'Investment Securities': investment_securities * rates['investment_securities'],
-        'Commercial Loans': loans_commercial * rates['loans_commercial'],
-        'Residential Loans': loans_residential * rates['loans_residential'],
-        'Consumer Loans': loans_consumer * rates['loans_consumer'],
-        'Other Earning Assets': other_earning_assets * rates['other_earning']
+        'Cash': cash_equivalents * rates['cash'],
+        'Securities': investment_securities * rates['securities'],
+        'Commercial Loans': loans_commercial * rates['commercial_loans'],
+        'Residential Loans': loans_residential * rates['residential_loans'],
+        'Consumer Loans': loans_consumer * rates['consumer_loans'],
+        'Other': other_earning_assets * rates.get('cash', 0.05)
     }
     return income
 
 def calculate_interest_expense():
-    """Calculate total interest expense"""
+    """Calculate total interest expense from each liability category"""
     expense = {
         'Demand Deposits': demand_deposits * rates['demand_deposits'],
         'Savings Deposits': savings_deposits * rates['savings_deposits'],
         'Time Deposits': time_deposits * rates['time_deposits'],
-        'Short-Term Borrowings': short_term_borrowings * rates['short_term_borrowings'],
-        'Long-Term Debt': long_term_debt * rates['long_term_debt']
+        'Short-term Borrowings': short_term_borrowings * rates['short_term_borrow'],
+        'Long-term Debt': long_term_debt * rates['long_term_debt']
     }
     return expense
 
-def calculate_nim(interest_income, interest_expense):
-    """Calculate Net Interest Margin"""
-    net_interest_income = interest_income - interest_expense
+def calculate_nim():
+    """
+    Calculate Net Interest Margin
+    
+    Formula: NIM = (Interest Income - Interest Expense) / Interest-Earning Assets
+    
+    This measures the spread the bank earns on its lending vs. funding costs.
+    """
+    income = calculate_interest_income()
+    expense = calculate_interest_expense()
+    
+    total_income = sum(income.values())
+    total_expense = sum(expense.values())
+    
+    net_interest_income = total_income - total_expense
     nim = net_interest_income / total_earning_assets
-    return nim, net_interest_income
+    
+    return nim, net_interest_income, income, expense
 
-def run_nim_analysis():
-    """Main NIM analysis function"""
+# =============================================================================
+# SECTION 3: MAIN EXECUTION
+# =============================================================================
+
+def run_analysis():
+    """Run the NIM analysis"""
     
     print("=" * 70)
     print("NET INTEREST MARGIN (NIM) CALCULATOR")
     print("=" * 70)
     
-    # Current NIM Calculation
-    print("\n" + "-" * 70)
-    print("INTEREST INCOME BREAKDOWN")
-    print("-" * 70)
+    # Get NIM and components
+    nim, nii, income_dict, expense_dict = calculate_nim()
     
-    income_dict = calculate_interest_income()
     total_income = sum(income_dict.values())
-    
-    for item, amount in income_dict.items():
-        pct = amount / total_income * 100
-        print(f"  {item:<25} ${amount:>10,.1f}M  ({pct:>5.1f}%)")
-    
-    print(f"  {'TOTAL':<25} ${total_income:>10,.1f}M")
-    
-    print("\n" + "-" * 70)
-    print("INTEREST EXPENSE BREAKDOWN")
-    print("-" * 70)
-    
-    expense_dict = calculate_interest_expense()
     total_expense = sum(expense_dict.values())
     
+    # Display Interest Income Breakdown
+    print("\n>>> INTEREST INCOME BREAKDOWN")
+    print("-" * 50)
+    for item, amount in income_dict.items():
+        pct = (amount / total_income * 100) if total_income > 0 else 0
+        print(f"    {item:<20} ${amount:>8,.1f}M  ({pct:>5.1f}%)")
+    print(f"    {'TOTAL':<20} ${total_income:>8,.1f}M")
+    
+    # Display Interest Expense Breakdown
+    print("\n>>> INTEREST EXPENSE BREAKDOWN")
+    print("-" * 50)
     for item, amount in expense_dict.items():
-        pct = amount / total_expense * 100
-        print(f"  {item:<25} ${amount:>10,.1f}M  ({pct:>5.1f}%)")
+        pct = (amount / total_expense * 100) if total_expense > 0 else 0
+        print(f"    {item:<20} ${amount:>8,.1f}M  ({pct:>5.1f}%)")
+    print(f"    {'TOTAL':<20} ${total_expense:>8,.1f}M")
     
-    print(f"  {'TOTAL':<25} ${total_expense:>10,.1f}M")
+    # Display NIM Summary
+    print("\n>>> NIM SUMMARY")
+    print("-" * 50)
+    print(f"    Total Interest Income:    ${total_income:,.1f}M")
+    print(f"    Total Interest Expense:  ${total_expense:,.1f}M")
+    print(f"    Net Interest Income:     ${nii:,.1f}M")
+    print(f"    Total Earning Assets:    ${total_earning_assets:,.1f}M")
+    print(f"\n    >>> NET INTEREST MARGIN: {nim:.2%}")
     
-    # NIM Summary
-    nim, nii = calculate_nim(total_income, total_expense)
-    
-    print("\n" + "-" * 70)
-    print("NIM SUMMARY")
-    print("-" * 70)
-    print(f"  Total Interest Income:      ${total_income:,.1f}M")
-    print(f"  Total Interest Expense:     ${total_expense:,.1f}M")
-    print(f"  Net Interest Income:         ${nii:,.1f}M")
-    print(f"  Total Earning Assets:        ${total_earning_assets:,.1f}M")
-    print(f"\n  NET INTEREST MARGIN:         {nim:.2%}")
-    
-    # Additional Metrics
-    print("\n" + "-" * 70)
-    print("ADDITIONAL METRICS")
-    print("-" * 70)
-    
-    # Interest Spread (difference between avg asset yield and liability cost)
+    # Calculate key metrics
     avg_asset_yield = total_income / total_earning_assets
-    avg_liability_cost = total_expense / total_interest_liabilities
+    avg_liability_cost = total_expense / total_liabilities
     interest_spread = avg_asset_yield - avg_liability_cost
     
-    print(f"  Average Asset Yield:         {avg_asset_yield:.2%}")
-    print(f"  Average Liability Cost:     {avg_liability_cost:.2%}")
-    print(f"  Interest Spread:             {interest_spread:.2%}")
+    print("\n>>> ADDITIONAL METRICS")
+    print("-" * 50)
+    print(f"    Average Asset Yield:      {avg_asset_yield:.2%}")
+    print(f"    Average Liability Cost:   {avg_liability_cost:.2%}")
+    print(f"    Interest Spread:         {interest_spread:.2%}")
     
-    # Rate Sensitivity Analysis
-    print("\n" + "-" * 70)
-    print("RATE SENSITIVITY ANALYSIS")
-    print("Impact of Interest Rate Changes on NIM")
-    print("-" * 70)
+    # Rate Sensitivity
+    print("\n>>> RATE SENSITIVITY")
+    print("-" * 50)
+    print("    If interest rates change by:")
+    print("    Rate Change    New NIM    Impact")
+    print("    -----------    -------    ------")
     
-    print(f"\n{'Rate Change':<15} {'New NIM':<15} {'Change':<15} {'NII Impact':<15}")
-    print("-" * 70)
-    
+    # Simple sensitivity: NIM changes roughly 0.35% for every 1% rate change
     base_nim = nim
-    base_nii = nii
-    
-    for change in rate_scenarios:
-        # Approximate NIM impact (simplified: 0.35% NIM change per 1% rate change)
-        nim_change = change * 0.00035  # 35% of basis point change
-        new_nim = base_nim + nim_change
-        new_nii = new_nim * total_earning_assets
-        
-        change_str = f"{nim_change:.2%}"
-        impact_str = f"${new_nii - base_nii:+,.0f}M"
-        
-        print(f"  {change:+5} bps      {new_nim:.2%}         {change_str:>10}    {impact_str:>12}")
-    
-    # Asset-Liability Mix
-    print("\n" + "-" * 70)
-    print("ASSET-LIABILITY MIX")
-    print("-" * 70)
-    
-    print(f"\n  Earning Assets:              ${total_earning_assets:,.0f}M")
-    print(f"  Interest Liabilities:         ${total_interest_liabilities:,.0f}M")
-    print(f"  Spread (Assets - Liab):      ${total_earning_assets - total_interest_liabilities:,.0f}M")
-    
-    # Deposit Breakdown
-    total_deposits = demand_deposits + savings_deposits + time_deposits
-    print(f"\n  Deposit Mix:")
-    print(f"    Demand:    {demand_deposits/total_deposits:>6.1%}  (${demand_deposits:,.0f}M)")
-    print(f"    Savings:   {savings_deposits/total_deposits:>6.1%}  (${savings_deposits:,.0f}M)")
-    print(f"    Time:      {time_deposits/total_deposits:>6.1%}  (${time_deposits:,.0f}M)")
+    for change in [-200, -100, -50, 0, 50, 100, 200]:
+        change_pct = change / 10000  # Convert bps to decimal
+        new_nim = base_nim + (change_pct * 0.35)
+        impact = new_nim - base_nim
+        print(f"    {change:+5} bps      {new_nim:.2%}     {impact:+.2%}")
     
     print("\n" + "=" * 70)
+    print("MODIFIED INPUTS TO RUN FOR DIFFERENT BANKS")
+    
+    return nim
 
 # =============================================================================
-# MAIN EXECUTION
+# RUN THE MODEL
 # =============================================================================
 
 if __name__ == "__main__":
-    run_nim_analysis()
+    print("\nRunning NIM Calculator...")
+    print("To modify: Change values in the INPUTS section\n")
+    result = run_analysis()

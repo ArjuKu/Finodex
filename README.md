@@ -1,26 +1,77 @@
 # Finodex
 
-Finance knowledge repository covering Banking, Equities, and Commodities. The objective is to build a comprehensive rolodex containing the basics of Financial fields, including banking, Equity Research, and Commodities. This is just a small side project I have started to equip myself with both financial and coding knowledge, seeing as I'm a beginner in both. Whether you have interviews or you just want to learn, Finodex is an open consideration. I'd love to hear your input as well.
+Finance knowledge repository covering Banking, Equities, and Commodities.
 
-This is a product of vibe coding, and mixing in some basic Python, Excel, and practical/academic experience I have garnered in the finance field. My brother taught me the basics of opencode, and I am super excited about what can be done in this space. 
+## Objective
+
+Build a comprehensive rolodex containing:
+- Financial modeling knowledge
+- Valuation methods and pricing models
+- Interview preparation and technicals
+- Python and Excel templates
+
+Designed for beginners in both finance and coding - learn by using real templates used in industry.
+
+---
 
 ## Sections
 
 ### [Banking](./banking/)
-- Valuation Methods
-- Pricing Models
-- News (WIP)
+- Valuation Methods - DCF, DDM, bank-specific models
+- Pricing Models - NIM, loan pricing, yield curves
+- Interview Tips - Behavioral guides & technical questions
+- Python - Working models you can customize
+- Downloads - PDF guides (print-friendly)
 
 ### [Equities](./equities/)
-- Valuation Methods
-- Pricing Models
-- News (WIP)
+- Valuation Methods - DCF, Comps, valuation tutorials
+- Pricing Models - CAPM, WACC, pricing models
+- Interview Tips - Stock pitches, technical questions
+- Python - DCF, CAPM, Comps models
+- Downloads - PDF guides
 
 ### [Commodities](./commodities/)
-- Valuation Methods
-- Pricing Models
-- News (WIP)
+- Valuation Methods - NAV, resource valuation
+- Pricing Models - Forward pricing, options, curves
+- Interview Tips - Market views, technicals
+- Python - Forward pricing, options, NAV models
+- Downloads - PDF guides
 
 ---
 
-Feel free to join in on filling this Rolodex. I'd appreciate every bit of help from anyone with knowledge in either field. Suggestions are more than welcome as I'm looking to optimise this as a briefing tool.
+## Quick Start
+
+1. **For Excel users**: Go to any `downloads/` folder for templates
+2. **For Python users**: Check the `python/` folders - each has clear INPUTS sections
+3. **For interview prep**: Visit `interview-tips/` in each section
+
+---
+
+## Contributing
+
+This is a WIP! Contributions welcome:
+- Add your own models
+- Submit interview questions
+- Share PDF resources
+- Fix bugs or improve templates
+
+---
+
+## Resources
+
+### Tutorials
+- [DCF Tutorial](./equities/valuation-methods/DCFF_TUTORIAL.md)
+- [WACC Explained](./equities/pricing-models/WACC_TUTORIAL.md)
+- [Bank Valuation](./banking/valuation-methods/BANK_VALUATION_TUTORIAL.md)
+- [Forward Pricing](./commodities/pricing-models/FORWARD_PRICING_TUTORIAL.md)
+
+### Sources
+- Wall Street Prep
+- Corporate Finance Institute
+- CFA Institute
+- Bloomberg
+- CME Group
+
+---
+
+*Last updated: 2024 | Built for learning and interview prep*

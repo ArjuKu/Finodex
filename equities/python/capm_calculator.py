@@ -1,224 +1,207 @@
 """
-CAPM & Cost of Equity Calculator
-================================
-Calculates cost of equity using the Capital Asset Pricing Model (CAPM)
-and other methods.
+================================================================================
+CAPM & WACC CALCULATOR - TEMPLATE
+================================================================================
+
+What this does:
+    Calculates Cost of Equity using CAPM (Capital Asset Pricing Model)
+    and WACC (Weighted Average Cost of Capital).
 
 USAGE:
-------
-1. Modify the INPUTS section with market data and company beta
-2. Run the script
-3. Review the calculated required return and sensitivity analysis
+    1. Modify the INPUTS section below
+    2. Run: python capm_calculator.py
+    3. Review calculated required return and WACC
 
-CAPM Formula: Re = Rf + Beta × (Rm - Rf)
+INPUTS TO MODIFY:
+    - risk_free_rate: 10-year Treasury yield (e.g., 0.045 = 4.5%)
+    - market_risk_premium: Historical market return minus risk-free (5-7%)
+    - beta: Company beta (1.0 = same risk as market)
+    - company_debt: Market value of company debt ($M)
+    - company_equity: Market value of company equity ($M)
+    - cost_of_debt: Interest rate on debt
+    - tax_rate: Corporate tax rate
+
+For help: See WACC_TUTORIAL.md
+================================================================================
 """
 
-import pandas as pd
-import numpy as np
-
 # =============================================================================
-# INPUTS - Modify these values
+# SECTION 1: INPUTS - Change these values
 # =============================================================================
 
 # Market Data
 risk_free_rate = 0.045           # 10-year Treasury yield (4.5%)
-market_return = 0.105            # Expected market return (10.5%)
-market_risk_premium = market_return - risk_free_rate
+market_risk_premium = 0.06        # Market risk premium (6%)
 
-# Company-Specific
+# Company-Specific Data
 company_name = "TechCorp Inc."
-company_beta = 1.20              # Levered beta
+company_beta = 1.20              # Company beta
 company_debt = 7500              # Market value of debt ($M)
 company_equity = 22500           # Market value of equity ($M)
-company_tax_rate = 0.21          # Corporate tax rate
+company_tax_rate = 0.21          # Corporate tax rate (21%)
 
-# Alternative: Use unlevered beta from industry
-use_unlevered_beta = False
-industry_unlevered_beta = 1.00  # Industry unlevered beta
-industry_debt_equity = 0.50      # Industry D/E ratio
+# Cost of Debt (pre-tax)
+cost_of_debt_pre = 0.055        # Pre-tax cost of debt (5.5%)
 
 # =============================================================================
-# CALCULATION ENGINE
+# SECTION 2: CALCULATION ENGINE
 # =============================================================================
 
 def calculate_beta_levered(beta_u, d_e, tax_rate):
-    """Calculate levered beta from unlevered beta"""
+    """
+    Calculate levered beta from unlevered beta.
+    
+    Formula: Beta_L = Beta_U × [1 + (1-T) × D/E]
+    """
     return beta_u * (1 + (1 - tax_rate) * d_e)
 
 def calculate_beta_unlevered(beta_l, d_e, tax_rate):
-    """Calculate unlevered beta from levered beta"""
+    """
+    Calculate unlevered beta from levered beta.
+    """
     return beta_l / (1 + (1 - tax_rate) * d_e)
 
 def calculate_capm(rf, beta, mrp):
     """
-    Capital Asset Pricing Model
-    Re = Rf + Beta × (Rm - Rf)
+    Calculate Cost of Equity using CAPM.
+    
+    Formula: Re = Rf + Beta × (Rm - Rf)
     """
     return rf + beta * mrp
 
-def calculate_buildup(rf, beta, mrp, size_premium=0, specific_premium=0):
+def calculate_wacc(equity_weight, debt_weight, cost_equity, cost_debt, tax_rate):
     """
-    Build-Up Method
-    Re = Rf + Beta × MRP + Size Premium + Specific Risk Premium
+    Calculate Weighted Average Cost of Capital.
+    
+    Formula: WACC = (E/V × Re) + (D/V × Rd × (1-T))
     """
-    return rf + (beta * mrp) + size_premium + specific_premium
+    return (equity_weight * cost_equity) + (debt_weight * cost_debt * (1 - tax_rate))
+
+# =============================================================================
+# SECTION 3: MAIN EXECUTION
+# =============================================================================
 
 def run_capm_analysis():
-    """Main CAPM analysis function"""
+    """Main CAPM and WACC calculation"""
     
     print("=" * 70)
-    print(f"CAPM & COST OF EQUITY CALCULATOR: {company_name}")
+    print(f"CAPM & WACC CALCULATOR: {company_name}")
     print("=" * 70)
     
-    # Display Market Data
-    print("\n" + "-" * 70)
-    print("MARKET DATA")
-    print("-" * 70)
-    print(f"  Risk-Free Rate (Rf):         {risk_free_rate:.2%}")
-    print(f"  Expected Market Return (Rm): {market_return:.2%}")
-    print(f"  Market Risk Premium (MRP):    {market_risk_premium:.2%}")
+    # Step 1: Display Market Inputs
+    print("\n>>> STEP 1: Market Data")
+    print("-" * 50)
+    print(f"    Risk-Free Rate (Rf):        {risk_free_rate:.2%}")
+    print(f"    Market Risk Premium (MRP):   {market_risk_premium:.2%}")
+    print(f"    Company Beta:                {company_beta}")
     
-    # Beta Calculation
-    print("\n" + "-" * 70)
-    print("BETA CALCULATION")
-    print("-" * 70)
+    # Step 2: Calculate Cost of Equity (CAPM)
+    print("\n>>> STEP 2: Cost of Equity (CAPM)")
+    print("-" * 50)
+    print("    Formula: Re = Rf + Beta x MRP")
+    print(f"    Re = {risk_free_rate:.2%} + {company_beta} x {market_risk_premium:.2%}")
     
-    if use_unlevered_beta:
-        # Relever the industry beta for this company's capital structure
-        company_d_e = company_debt / company_equity
-        levered_beta = calculate_beta_levered(
-            industry_unlevered_beta, 
-            company_d_e, 
-            company_tax_rate
-        )
-        print(f"\n  Using Unlevered Beta Method:")
-        print(f"    Industry Unlevered Beta:    {industry_unlevered_beta:.2f}")
-        print(f"    Industry D/E Ratio:         {industry_debt_equity:.2f}")
-        print(f"    Company D/E Ratio:          {company_d_e:.2f}")
-        print(f"    Tax Rate:                   {company_tax_rate:.1%}")
-        print(f"\n  Relevered Beta:              {levered_beta:.2f}")
-    else:
-        levered_beta = company_beta
-        print(f"\n  Using Company Beta:")
-        print(f"    Levered Beta:              {levered_beta:.2f}")
+    cost_of_equity = calculate_capm(risk_free_rate, company_beta, market_risk_premium)
+    beta_contribution = company_beta * market_risk_premium
+    
+    print(f"    Re = {risk_free_rate:.2%} + {beta_contribution:.2%}")
+    print(f"    >>> Cost of Equity: {cost_of_equity:.2%}")
     
     # Beta interpretation
-    print("\n  Beta Interpretation:")
-    if levered_beta < 0.8:
-        print(f"    Beta = {levered_beta:.2f} → Less volatile than market (Defensive)")
-    elif levered_beta > 1.2:
-        print(f"    Beta = {levered_beta:.2f} → More volatile than market (Aggressive)")
+    print(f"\n    Beta Interpretation:")
+    if company_beta < 0.8:
+        print(f"    Beta = {company_beta} -> Less volatile than market (Defensive)")
+    elif company_beta > 1.2:
+        print(f"    Beta = {company_beta} -> More volatile than market (Aggressive)")
     else:
-        print(f"    Beta = {levered_beta:.2f} → Similar volatility to market")
+        print(f"    Beta = {company_beta} -> Similar volatility to market")
     
-    # CAPM Calculation
-    print("\n" + "-" * 70)
-    print("COST OF EQUITY (CAPM)")
-    print("-" * 70)
-    
-    cost_of_equity = calculate_capm(risk_free_rate, levered_beta, market_risk_premium)
-    
-    print(f"\n  Formula: Re = Rf + β × (Rm - Rf)")
-    print(f"  Re = {risk_free_rate:.2%} + {levered_beta:.2f} × {market_risk_premium:.2%}")
-    print(f"  Re = {risk_free_rate:.2%} + {levered_beta * market_risk_premium:.2%}")
-    print(f"\n  Cost of Equity (Required Return):  {cost_of_equity:.2%}")
-    
-    # Build-Up Method (optional)
-    print("\n" + "-" * 70)
-    print("BUILD-UP METHOD (Optional)")
-    print("-" * 70)
-    
-    # Size premium example (small cap premium)
-    size_premium = 0.02  # 2% for small cap
-    specific_premium = 0  # Company-specific risk
-    
-    buildup = calculate_buildup(risk_free_rate, levered_beta, market_risk_premium, 
-                               size_premium, specific_premium)
-    
-    print(f"\n  Formula: Re = Rf + β × MRP + Size Premium + Specific Premium")
-    print(f"  Re = {risk_free_rate:.2%} + {levered_beta:.2f} × {market_risk_premium:.2%} + {size_premium:.2%} + {specific_premium:.2%}")
-    print(f"  Re = {risk_free_rate:.2%} + {levered_beta * market_risk_premium:.2%} + {size_premium:.2%}")
-    print(f"\n  Cost of Equity (Build-Up):   {buildup:.2%}")
-    
-    # WACC Components
-    print("\n" + "-" * 70)
-    print("WEIGHTED AVERAGE COST OF CAPITAL (WACC) COMPONENTS")
-    print("-" * 70)
+    # Step 3: Calculate Capital Structure
+    print("\n>>> STEP 3: Capital Structure")
+    print("-" * 50)
     
     total_capital = company_equity + company_debt
     equity_weight = company_equity / total_capital
     debt_weight = company_debt / total_capital
     
-    # Cost of debt (simplified - use actual if available)
-    cost_of_debt_pre = 0.055  # Pre-tax cost of debt
-    cost_of_debt = cost_of_debt_pre * (1 - company_tax_rate)
+    print(f"    Market Value of Equity:   ${company_equity:,.0f}M")
+    print(f"    Market Value of Debt:     ${company_debt:,.0f}M")
+    print(f"    Total Capital:           ${total_capital:,.0f}M")
+    print(f"\n    Equity Weight (E/V):     {equity_weight:.1%}")
+    print(f"    Debt Weight (D/V):      {debt_weight:.1%}")
     
-    wacc = (equity_weight * cost_of_equity) + (debt_weight * cost_of_debt)
+    # Step 4: Calculate Cost of Debt
+    print("\n>>> STEP 4: Cost of Debt")
+    print("-" * 50)
     
-    print(f"\n  Capital Structure:")
-    print(f"    Market Value of Equity:    ${company_equity:,.0f}M")
-    print(f"    Market Value of Debt:      ${company_debt:,.0f}M")
-    print(f"    Total Capital:             ${total_capital:,.0f}M")
-    print(f"\n  Weights:")
-    print(f"    Equity Weight (E/V):      {equity_weight:.1%}")
-    print(f"    Debt Weight (D/V):         {debt_weight:.1%}")
-    print(f"\n  Cost of Capital:")
-    print(f"    Cost of Equity (Re):       {cost_of_equity:.2%}")
-    print(f"    Cost of Debt (Rd):         {cost_of_debt:.2%} (after-tax)")
-    print(f"\n  WACC = (E/V × Re) + (D/V × Rd × (1-T))")
-    print(f"  WACC = ({equity_weight:.1%} × {cost_of_equity:.2%}) + ({debt_weight:.1%} × {cost_of_debt:.2%})")
-    print(f"\n  WACC:                       {wacc:.2%}")
+    cost_of_debt_after = cost_of_debt_pre * (1 - company_tax_rate)
+    
+    print(f"    Pre-tax Cost of Debt:    {cost_of_debt_pre:.2%}")
+    print(f"    Tax Rate:                {company_tax_rate:.1%}")
+    print(f"    >>> After-tax Cost of Debt: {cost_of_debt_after:.2%}")
+    
+    # Step 5: Calculate WACC
+    print("\n>>> STEP 5: Weighted Average Cost of Capital (WACC)")
+    print("-" * 50)
+    
+    wacc = calculate_wacc(equity_weight, debt_weight, cost_of_equity, 
+                        cost_of_debt_pre, company_tax_rate)
+    
+    print("    Formula: WACC = (E/V x Re) + (D/V x Rd x (1-T))")
+    print(f"    WACC = ({equity_weight:.1%} x {cost_of_equity:.2%}) + ({debt_weight:.1%} x {cost_of_debt_after:.2%})")
+    print(f"    WACC = {equity_weight * cost_of_equity:.2%} + {debt_weight * cost_of_debt_after:.2%}")
+    print(f"\n    >>> WACC: {wacc:.2%}")
+    
+    # What WACC Means
+    print("\n>>> WHAT THIS MEANS")
+    print("-" * 50)
+    print(f"    A WACC of {wacc:.2%} means:")
+    print(f"    - This is the MINIMUM return the company should earn")
+    print(f"    - Use this as DISCOUNT RATE in DCF valuations")
+    print(f"    - Projects should earn more than {wacc:.2%} to create value")
     
     # Sensitivity Analysis
-    print("\n" + "-" * 70)
-    print("SENSITIVITY ANALYSIS")
-    print("Cost of Equity vs. Beta & Market Risk Premium")
-    print("-" * 70)
+    print("\n>>> SENSITIVITY ANALYSIS")
+    print("-" * 50)
+    print("    How WACC changes with different capital structures:")
+    print()
+    print("               Cost of Debt ->")
+    print("    E/V      3%      4%      5%      6%      7%")
+    print("    " + "-" * 50)
     
-    sensitivities = []
-    for beta in [0.8, 1.0, 1.2, 1.4, 1.6]:
-        for mrp in [0.04, 0.05, 0.06, 0.07, 0.08]:
-            re = calculate_capm(risk_free_rate, beta, mrp)
-            sensitivities.append({
-                'Beta': beta,
-                'MRP': mrp,
-                'Cost of Equity': re
-            })
-    
-    sens_df = pd.DataFrame(sensitivities)
-    pivot = sens_df.pivot(index='Beta', columns='MRP', values='Cost of Equity')
-    print("\n" + pivot.round(2).to_string())
-    
-    # WACC Sensitivity
-    print("\n" + "-" * 70)
-    print("WACC SENSITIVITY")
-    print("-" * 70)
-    
-    wacc_sens = []
-    for re in [0.08, 0.10, 0.12, 0.14, 0.16]:
+    for ew in [0.3, 0.5, 0.7, 0.9]:
+        dw = 1 - ew
+        row = f"    {ew:.0%}      "
         for rd in [0.03, 0.04, 0.05, 0.06, 0.07]:
-            w = (equity_weight * re) + (debt_weight * rd * (1 - company_tax_rate))
-            wacc_sens.append({
-                'Cost of Equity': re,
-                'Cost of Debt': rd,
-                'WACC': w
-            })
+            w = calculate_wacc(ew, dw, cost_of_equity, rd, company_tax_rate)
+            row += f"{w:>5.1%}   "
+        print(row)
     
-    wacc_df = pd.DataFrame(wacc_sens)
-    wacc_pivot = wacc_df.pivot(index='Cost of Equity', columns='Cost of Debt', values='WACC')
-    print("\n" + wacc_pivot.round(2).to_string())
+    # Typical WACC by industry
+    print("\n>>> TYPICAL WACC BY INDUSTRY")
+    print("-" * 50)
+    industries = [
+        ("Utilities", 0.06),
+        ("Banks", 0.09),
+        ("Manufacturing", 0.10),
+        ("Tech", 0.11),
+        ("Biotech", 0.15)
+    ]
+    for industry, typical_wacc in industries:
+        diff = wacc - typical_wacc
+        sign = "+" if diff > 0 else ""
+        print(f"    {industry:<15} {typical_wacc:.0%}  (Your company: {sign}{diff:.1%})")
     
     print("\n" + "=" * 70)
+    print("MODEL COMPLETE - Modify inputs to calculate for different companies")
     
-    return {
-        'cost_of_equity': cost_of_equity,
-        'wacc': wacc,
-        'beta': levered_beta
-    }
+    return wacc
 
 # =============================================================================
-# MAIN EXECUTION
+# RUN THE MODEL
 # =============================================================================
 
 if __name__ == "__main__":
-    results = run_capm_analysis()
+    print("\nRunning CAPM & WACC Calculator...")
+    print("To modify: Change values in the INPUTS section\n")
+    result = run_capm_analysis()
