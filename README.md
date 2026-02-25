@@ -8,9 +8,9 @@ Build a comprehensive rolodex containing:
 - Financial modeling knowledge
 - Valuation methods and pricing models
 - Interview preparation and technicals
-- Python and Excel templates
+- Python models with working code
 
-Designed for beginners in both finance and coding - learn by using real templates used in industry.
+Designed for beginners in both finance and coding - learn by using real models used in industry.
 
 ---
 
@@ -41,9 +41,9 @@ Designed for beginners in both finance and coding - learn by using real template
 
 ## Quick Start
 
-1. **For Excel users**: Go to any `downloads/` folder for templates
-2. **For Python users**: Check the `python/` folders - each has clear INPUTS sections
-3. **For interview prep**: Visit `interview-tips/` in each section
+1. **For Python users**: Check the `python/` folders - each has clear INPUTS sections you can modify
+2. **For interview prep**: Visit `interview-tips/` in each section
+3. **For Excel templates**: See "Recommended External Resources" below
 
 ---
 
@@ -71,6 +71,22 @@ This is a WIP! Contributions welcome:
 - CFA Institute
 - Bloomberg
 - CME Group
+
+---
+
+## Recommended External Resources
+
+Finodex provides Python models for learning, but for professional Excel templates, we recommend these free resources:
+
+### Valuation Templates
+- **Aswath Damodaran (NYU Stern)** - "Dean of Valuation" spreadsheet library: https://pages.stern.nyu.edu/~adamodar/New_Home_Page/spreadsh.htm
+- **Corporate Finance Institute** - Free Excel modeling templates: https://corporatefinanceinstitute.com/resources/templates/excel-modeling/
+- **Macabacus** - Professional M&A and valuation models: https://macabacus.com/models
+
+### Learning Platforms
+- **Wall Street Prep** - Industry-standard training
+- **CFI** - Comprehensive finance courses
+- **AnalystForum** - Community discussions
 
 ---
 

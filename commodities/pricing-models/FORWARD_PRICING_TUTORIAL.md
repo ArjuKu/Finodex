@@ -257,6 +257,11 @@ Spread = $76 - $79 = -$3 (contango)
 
 ## Related Files
 
-- `forward_price_calculator.csv` - Excel calculator
 - `forward_price_calculator.py` - Python model
-- `spot_futures_data.csv` - Historical data
+- Python models in `/commodities/python/`
+
+## Excel Templates
+
+For professional Excel templates, we recommend:
+- [Damodaran's Valuation Spreadsheets](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/spreadsh.htm)
+- [CME Group](https://www.cmegroup.com/education/) - Commodity pricing resources

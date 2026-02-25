@@ -254,6 +254,11 @@ Higher WACC = Lower valuation
 
 ## Related Files
 
-- `wacc_calculator.csv` - Excel calculator
 - `capm_calculator.py` - Python implementation
-- `dcf_model.csv` - Uses WACC for DCF
+- `equity_dcf_model.py` - Uses WACC for DCF
+
+## Excel Templates
+
+For professional Excel templates, we recommend:
+- [Damodaran's Valuation Spreadsheets](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/spreadsh.htm)
+- [Corporate Finance Institute Templates](https://corporatefinanceinstitute.com/resources/templates/excel-modeling/)

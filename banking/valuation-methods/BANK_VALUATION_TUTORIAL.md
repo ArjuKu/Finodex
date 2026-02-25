@@ -259,7 +259,11 @@ P = $4.50 × 12 = $54
 
 ## Related Files
 
-- `bank_dcf_model.csv` - Excel DCF template
 - `bank_ddm_model.py` - Python DDM model
-- `nim_calculator.csv` - NIM calculator
-- `bank_comps_data.csv` - Bank comparable data
+- Python DCF models in `/banking/python/`
+
+## Excel Templates
+
+For professional Excel templates, we recommend:
+- [Damodaran's Valuation Spreadsheets](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/spreadsh.htm)
+- [Corporate Finance Institute Templates](https://corporatefinanceinstitute.com/resources/templates/excel-modeling/)

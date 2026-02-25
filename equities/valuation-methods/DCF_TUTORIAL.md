@@ -231,6 +231,11 @@ Always test different assumptions:
 
 ## Related Models in This Folder
 
-- `dcf_model.csv` - Excel template
 - `equity_dcf_model.py` - Python implementation
 - See `../pricing-models/` for WACC calculation guide
+
+## Excel Templates
+
+For professional Excel templates, we recommend:
+- [Damodaran's Valuation Spreadsheets](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/spreadsh.htm)
+- [Corporate Finance Institute Templates](https://corporatefinanceinstitute.com/resources/templates/excel-modeling/)
