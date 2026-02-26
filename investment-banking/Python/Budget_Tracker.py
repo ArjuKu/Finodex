@@ -15,7 +15,8 @@ HOW TO USE:
 def track_budget():
     # --- INPUTS ---
     print("--- 1. COMPANY BUDGET INPUTS ---")
-    company_name = "FutureVentures Ltd."
+    # REPLACE WITH THE COMPANY YOU ARE EVALUATING
+    company_name = "[ENTER COMPANY NAME]"
     
     # Category: (Budgeted, Actual)
     finances = {

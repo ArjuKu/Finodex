@@ -13,8 +13,9 @@ HOW TO USE:
 def calculate_resource_nav():
     # --- INPUTS ---
     print("--- 1. RESOURCE DEPOSIT DATA ---")
-    deposit_name = "Silver Creek Project"
-    commodity = "Gold"
+    # REPLACE WITH THE DEPOSIT/COMMODITY YOU ARE EVALUATING
+    deposit_name = "[ENTER DEPOSIT NAME]"
+    commodity = "[ENTER COMMODITY TYPE]"
     
     total_reserves = 1000000  # ounces of gold
     grade = 5.0               # grams per tonne (simplified)

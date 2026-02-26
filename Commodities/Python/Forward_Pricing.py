@@ -13,7 +13,8 @@ HOW TO USE:
 def calculate_forward_price():
     # --- INPUTS ---
     print("--- 1. COMMODITY DATA ---")
-    commodity = "Crude Oil"
+    # REPLACE WITH THE COMMODITY YOU ARE EVALUATING
+    commodity = "[ENTER COMMODITY TYPE]"
     spot_price = 75.00          # $/barrel today
     
     storage_cost = 2.00         # $/barrel per year

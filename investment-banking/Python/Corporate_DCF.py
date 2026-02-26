@@ -12,7 +12,8 @@ HOW TO USE:
 def calculate_corporate_dcf():
     # --- INPUTS ---
     print("--- 1. COMPANY DATA INPUTS ---")
-    company_name = "TechCorp Inc."
+    # REPLACE WITH THE COMPANY YOU ARE EVALUATING
+    company_name = "[ENTER COMPANY NAME]"
     current_revenue = 1000.0  # $ in millions
     revenue_growth = 0.10     # 10% annual growth
     ebit_margin = 0.20        # 20% operating margin

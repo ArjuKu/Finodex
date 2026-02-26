@@ -14,7 +14,8 @@ HOW TO USE:
 def calculate_equity_dcf():
     # --- INPUTS ---
     print("--- 1. COMPANY DATA INPUTS ---")
-    company_name = "GrowthTech Inc."
+    # REPLACE WITH THE COMPANY YOU ARE EVALUATING
+    company_name = "[ENTER COMPANY NAME]"
     current_stock_price = 45.00  # $ per share
     shares_outstanding = 100.0   # millions of shares
     

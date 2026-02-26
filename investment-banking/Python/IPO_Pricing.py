@@ -13,7 +13,8 @@ HOW TO USE:
 def calculate_ipo_pricing():
     # --- INPUTS ---
     print("--- 1. IPO DATA INPUTS ---")
-    company_name = "CloudFlow Tech"
+    # REPLACE WITH THE COMPANY YOU ARE EVALUATING
+    company_name = "[ENTER COMPANY NAME]"
     target_earnings = 50.0    # $ in millions (Last 12 Months)
     shares_to_issue = 10.0    # millions of shares to be issued
     

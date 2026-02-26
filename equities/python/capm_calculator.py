@@ -13,7 +13,8 @@ HOW TO USE:
 def calculate_capm():
     # --- INPUTS ---
     print("--- 1. MARKET DATA INPUTS ---")
-    company_name = "TechStock Inc."
+    # REPLACE WITH THE COMPANY YOU ARE EVALUATING
+    company_name = "[ENTER COMPANY NAME]"
     
     risk_free_rate = 0.045        # 10-Year US Treasury = 4.5%
     market_risk_premium = 0.06   # Historical market premium = 6%

@@ -13,7 +13,8 @@ HOW TO USE:
 def calculate_lbo():
     # --- INPUTS ---
     print("--- 1. DEAL DATA INPUTS ---")
-    company_name = "SecureLogistics Co."
+    # REPLACE WITH THE COMPANY YOU ARE EVALUATING
+    company_name = "[ENTER COMPANY NAME]"
     purchase_price = 1000.0   # $ in millions (Enterprise Value)
     purchase_ebitda = 200.0   # $ in millions
     
