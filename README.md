@@ -23,22 +23,33 @@ I built Finodex to be the "safe rolodex" I wish I had—a place where you can ex
 
 ## 🏗️ The Three Areas
 
-### [Investment Banking](./investment-banking/)
-The Transaction Focus: M&A, LBOs, and IPOs. How companies are bought and sold.
+### [Investment-Banking](./Investment-Banking/)
+The Transaction Focus: M&A, LBOs, IPOs, and Corporate Valuation.
+- **Valuation_Methods.md**: Precedent Transactions & Corporate DCF
+- **Pricing_Models.md**: IPO Pricing, M&A Pricing & FP&A
+- **LBO_Tutorial.md**: The "House Mortgage" Model
+- **Python/**: Corporate_DCF.py, LBO_Model.py, Budget_Tracker.py, IPO_Pricing.py
 
-### [Equities](./equities/)
+### [Equities](./Equities/)
 The Investment Focus: Stock picking, fundamental analysis, and market valuation.
+- **Valuation_Methods.md**: P/E Ratios & Equity DCF
+- **Pricing_Models.md**: CAPM & WACC
+- **Python/**: Equity_DCF.py, CAPM_Calculator.py
 
-### [Commodities](./commodities/)
-The Asset Focus: Spot prices, futures, and valuing the physical resources in the ground.
+### [Commodities](./Commodities/)
+The Asset Focus: Spot prices, futures, and valuing physical resources.
+- **Valuation_Methods.md**: Spot Value & Resource NAV
+- **Pricing_Models.md**: Forward Pricing & Cost of Carry
+- **Python/**: Resource_NAV.py, Forward_Pricing.py
 
 ---
 
 ## 🚀 Quick Start
 
-1. **For Python users**: Check the `python/` folders - each has clear INPUTS sections you can modify
-2. **For interview prep**: Visit `interview-tips/` in each section
-3. **For Excel templates**: See "Recommended External Resources" below
+1. **Start with The Landscape**: Read [Investment-Banking/The_Landscape.md](./Investment-Banking/The_Landscape.md) or [Equities/The_Landscape.md](./Equities/The_Landscape.md) to understand the difference between IB and ER.
+2. **Pick your path**: Choose Investment-Banking, Equities, or Commodities.
+3. **Read the guides**: Start with Valuation_Methods.md for the foundation.
+4. **Run the Python models**: Each script has a clear "INPUTS" section.
 
 ---
 
@@ -57,15 +68,6 @@ I'm learning every day, and I would love for you to join me! Whether you're a pr
 If you have personal suggestions, notice a bug, or just want to chat about finance and code, feel free to reach out to me directly:
 
 📧 **Email:** arjunkuma0308@gmail.com
-
----
-
-## 📚 Tutorials
-
-- [DCF Tutorial](./equities/valuation-methods/DCF_TUTORIAL.md)
-- [WACC Explained](./equities/pricing-models/WACC_TUTORIAL.md)
-- [M&A Valuation](./investment-banking/valuation-methods/BANK_VALUATION_TUTORIAL.md)
-- [Forward Pricing](./commodities/pricing-models/FORWARD_PRICING_TUTORIAL.md)
 
 ---
 
