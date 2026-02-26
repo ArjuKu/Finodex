@@ -1,6 +1,6 @@
 # Finodex 📈
 
-**A beginner's "one-stop shop" for Banking, Equity, and Commodities.**
+**A beginner's "one-stop shop" for Investment Banking, Equities, and Commodities.**
 
 ---
 
@@ -8,7 +8,7 @@
 
 Hi there! I'm the creator of Finodex. Like many people starting out, I found the worlds of finance and coding to be incredibly intimidating. **I'm a beginner at coding myself, and I don't have years of academic or work experience in finance yet.**
 
-I built Finodex to be the "safe rolodex" I wish I had—a place where you can explore financial models and coding without feeling overwhelmed. This repository is a living document of my learning journey, designed to help others who are starting from zero to build a solid foundation in the three most common areas for newer employees and fresh graduates: **Banking**, **Equity**, and **Commodities**.
+I built Finodex to be the "safe rolodex" I wish I had—a place where you can explore financial models and coding without feeling overwhelmed. This repository is a living document of my learning journey, designed to help others who are starting from zero to build a solid foundation in the three most common areas for newer employees and fresh graduates: **Investment Banking**, **Equities**, and **Commodities**.
 
 ---
 
@@ -23,14 +23,14 @@ I built Finodex to be the "safe rolodex" I wish I had—a place where you can ex
 
 ## 🏗️ The Three Areas
 
-### [Banking](./banking/)
-Valuation Methods, Pricing Models, Interview Tips, Python models, and resources covering DCF, DDM, NIM, and bank-specific metrics.
+### [Investment Banking](./investment-banking/)
+The Transaction Focus: M&A, LBOs, and IPOs. How companies are bought and sold.
 
 ### [Equities](./equities/)
-Valuation Methods, Pricing Models, Interview Tips, Python models, and resources covering DCF, Comps, CAPM, and WACC.
+The Investment Focus: Stock picking, fundamental analysis, and market valuation.
 
 ### [Commodities](./commodities/)
-Valuation Methods, Pricing Models, Interview Tips, Python models, and resources covering NAV models, forward pricing, and resource valuation.
+The Asset Focus: Spot prices, futures, and valuing the physical resources in the ground.
 
 ---
 
@@ -62,9 +62,9 @@ If you have personal suggestions, notice a bug, or just want to chat about finan
 
 ## 📚 Tutorials
 
-- [DCF Tutorial](./equities/valuation-methods/DCFF_TUTORIAL.md)
+- [DCF Tutorial](./equities/valuation-methods/DCF_TUTORIAL.md)
 - [WACC Explained](./equities/pricing-models/WACC_TUTORIAL.md)
-- [Bank Valuation](./banking/valuation-methods/BANK_VALUATION_TUTORIAL.md)
+- [M&A Valuation](./investment-banking/valuation-methods/BANK_VALUATION_TUTORIAL.md)
 - [Forward Pricing](./commodities/pricing-models/FORWARD_PRICING_TUTORIAL.md)
 
 ---
