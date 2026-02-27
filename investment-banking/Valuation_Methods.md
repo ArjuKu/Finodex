@@ -6,18 +6,18 @@
 
 ## Table of Contents
 
-1. [The "Machine Factory" Metaphor](#1-the-machine-factory-metaphor)
-2. [The IB Dictionary](#2-the-ib-dictionary)
-3. [Understanding the Discount Rate (WACC & CAPM)](#3-understanding-the-discount-rate-wacc--capm)
-4. [Method 1: Precedent Transactions](#4-method-1-precedent-transactions)
-5. [Method 2: Corporate DCF (Unlevered FCF)](#5-method-2-corporate-dcf-unlevered-fcf)
-6. [Method 3: Accretion/Dilution Analysis](#6-method-3-accretiondilution-analysis)
-7. [IB Interview Cheat Sheet](#7-ib-interview-cheat-sheet)
-8. [Summary](#8-summary)
+1. [The "Machine Factory" Metaphor](#the-machine-factory-metaphor)
+2. [The IB Dictionary](#the-ib-dictionary)
+3. [Understanding the Discount Rate (WACC & CAPM)](#understanding-the-discount-rate-wacc--capm)
+4. [Method 1 - Precedent Transactions](#method-1---precedent-transactions)
+5. [Method 2 - Corporate DCF (Unlevered FCF)](#method-2---corporate-dcf-unlevered-fcf)
+6. [Method 3 - Accretion/Dilution Analysis](#method-3---accretiondilution-analysis)
+7. [IB Interview Cheat Sheet](#ib-interview-cheat-sheet)
+8. [Final Recap](#final-recap)
 
 ---
 
-## 1. The "Machine Factory" Metaphor
+## The "Machine Factory" Metaphor
 
 Imagine you want to buy a **machine factory**.
 
@@ -29,7 +29,7 @@ Imagine you want to buy a **machine factory**.
 
 ---
 
-## 2. The IB Dictionary
+## The IB Dictionary
 
 Before we look at the math, let's define the terms:
 
@@ -65,7 +65,7 @@ Before we look at the math, let's define the terms:
 
 ---
 
-## 3. Understanding the Discount Rate (WACC & CAPM)
+## Understanding the Discount Rate (WACC & CAPM)
 
 In a DCF, we discount future cash flows back to today's value. But what rate do we use? That's where **WACC** comes in.
 
@@ -129,7 +129,7 @@ WACC = 8.92% (rounded to 9.0%)
 
 ---
 
-## 4. Method 1: Precedent Transactions
+## Method 1 - Precedent Transactions
 
 ### The Concept
 
@@ -168,9 +168,11 @@ You must add the **Control Premium**. If similar companies trade on the stock ma
 | Add: Control Premium (20%) | $900M |
 | **Final Purchase Price** | **$5,400M** |
 
+> **🏃 Executive Summary:** This is a **relative valuation** method. It answers: *"What are buyers actually paying for similar companies right now?"* It is the most realistic for M&A because it includes the **Control Premium** and reflects the current "temperature" of the deal market.
+
 ---
 
-## 5. Method 2: Corporate DCF (Unlevered FCF)
+## Method 2 - Corporate DCF (Unlevered FCF)
 
 ### The Concept
 
@@ -315,9 +317,11 @@ Example:
 
 **Python Tool**: [Run Corporate_DCF.py](./Python/Corporate_DCF.py)
 
+> **🏃 Executive Summary:** This is an **intrinsic valuation** method. It answers: *"What is this business worth based solely on the cash it will generate in the future?"* While theoretically the most "correct," it is highly sensitive to assumptions—change the WACC by 1%, and the value can swing by millions.
+
 ---
 
-## 6. Method 3: Accretion/Dilution Analysis
+## Method 3 - Accretion/Dilution Analysis
 
 ### The Concept
 
@@ -351,9 +355,11 @@ New EPS = Combined Net Income ÷ Combined Shares Outstanding
 - **EPS Goes Up** = **Accretive** (Good Deal!)
 - **EPS Goes Down** = **Dilutive** (Bad Deal!)
 
+> **🏃 Executive Summary:** This is a **deal-impact test**. It answers: *"Does this acquisition make the buyer's shareholders richer or poorer on day one?"* It focuses on **Earnings Per Share ( "Value," ensuring the deal is aEPS)** rather than win for the people who own the buyer's stock.
+
 ---
 
-## 7. IB Interview Cheat Sheet
+## IB Interview Cheat Sheet
 
 Memorize these formulas for technical interviews:
 
@@ -395,7 +401,7 @@ Memorize these formulas for technical interviews:
 
 ---
 
-## 8. Summary
+## Final Recap
 
 Investment Banking valuation is about finding the **clearing price** for a deal.
 
