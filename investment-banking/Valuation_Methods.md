@@ -1,57 +1,148 @@
 # Investment Banking - Valuation Methods
 
-**Objective:** Valuing a company for a "Transaction" (M&A, IPO, or Buyout).
+**Objective:** Valuing a company for a **Transaction** (M&A, IPO, or LBO).
 
 ---
 
 ## Table of Contents
-1. [The "House Flip" Metaphor](#the-house-flip-metaphor)
-2. [The IB Dictionary](#the-ib-dictionary)
-3. [Method 1: Precedent Transactions](#method-1-precedent-transactions)
-4. [Method 2: Corporate DCF (Unlevered FCF)](#method-2-corporate-dcf)
-5. [Method 3: Accretion/Dilution Analysis](#method-3-accretiondilution-analysis)
-6. [Summary](#summary)
+
+1. [The "Machine Factory" Metaphor](#1-the-machine-factory-metaphor)
+2. [The IB Dictionary](#2-the-ib-dictionary)
+3. [Understanding the Discount Rate (WACC & CAPM)](#3-understanding-the-discount-rate-wacc--capm)
+4. [Method 1: Precedent Transactions](#4-method-1-precedent-transactions)
+5. [Method 2: Corporate DCF (Unlevered FCF)](#5-method-2-corporate-dcf-unlevered-fcf)
+6. [Method 3: Accretion/Dilution Analysis](#6-method-3-accretiondilution-analysis)
+7. [IB Interview Cheat Sheet](#7-ib-interview-cheat-sheet)
+8. [Summary](#8-summary)
 
 ---
 
-## 1. The "House Flip" Metaphor
-Imagine you want to buy a local pizza shop.
-- You don't just want to buy one pizza (a share); you want the **keys to the building**, the ovens, and the brand.
-- To do this, you look at what other pizza shops in the city sold for recently.
-- You might take out a loan (debt) to buy it, planning to pay back the loan using the pizza shop's daily profits.
+## 1. The "Machine Factory" Metaphor
 
-In Investment Banking, we aren't just looking for "value"; we are looking for the **Transaction Price**.
+Imagine you want to buy a **machine factory**.
+
+- You don't just want to buy one machine; you want the **entire building**, all the machines inside, the brand, the customer list, and the contracts.
+- To do this, you take out a **loan** (debt) from a bank and use your own cash (equity) for the rest.
+- You plan to pay back the loan using the factory's daily profits from selling widgets.
+
+**The Key Insight:** In Investment Banking, we aren't looking for "fair market value" alone. We're looking for the **Transaction Price**—the price at which a willing buyer and willing seller agree to complete a deal.
 
 ---
 
 ## 2. The IB Dictionary
+
 Before we look at the math, let's define the terms:
-- **Enterprise Value (EV)**: The "Total Price Tag." It's the cost to buy the equity PLUS pay off all the company's debts.
+
+- **Enterprise Value (EV):** The "Total Price Tag." It's the cost to buy the equity PLUS pay off all the company's debts.
+  
   ```
   EV = Market Cap + Total Debt - Cash
   ```
-- **Equity Value**: The market value of all the shares. If you own the equity, you own the "upside."
-- **EBITDA**: "Profit before the bankers and accountants touch it." It stands for Earnings Before Interest, Taxes, Depreciation, and Amortization. It shows the raw earning power of the business.
-- **Control Premium**: An extra fee (usually 20-30%) paid to convince current owners to give up control.
-- **Synergies**: Cost savings. "If I buy your shop, I can fire one of our two accountants because we only need one now."
-- **Unlevered FCF**: Cash flow available to ALL investors (debt + equity) before debt payments.
+
+- **Equity Value:** The market value of all the shares. If you own the equity, you own the "upside" after all debts are paid.
+
+- **EBITDA:** "Profit before the bankers and accountants touch it." It stands for **E**arnings **B**efore **I**nterest, **T**axes, **D**epreciation, and **A**mortization. It shows the raw earning power of the business.
+
+- **EBIT:** Earnings Before Interest and Taxes. The profit from operations, ignoring how the company is financed.
+
+- **NOPAT:** Net Operating Profit After Tax. The cash flow available to all investors if the company had no debt.
+
+  ```
+  NOPAT = EBIT × (1 - Tax Rate)
+  ```
+
+- **Unlevered FCF (UFCF):** Cash flow available to ALL investors (debt + equity) before debt payments. Also called **Free Cash Flow to Firm (FCFF)**.
+
+- **Control Premium:** An extra fee (usually 20-30%) paid to convince current owners to give up control of their company.
+
+- **Synergies:** Cost savings or revenue boosts that only happen after the deal closes. *"If I buy your factory, I can fire one of our two accountants because we only need one now."*
+
+- **Net Debt:** Total Debt minus Cash. This is the "debt burden" left after subtracting the cash the company already has.
+
+  ```
+  Net Debt = Total Debt - Cash
+  ```
 
 ---
 
-## 3. Method 1: Precedent Transactions
+## 3. Understanding the Discount Rate (WACC & CAPM)
+
+In a DCF, we discount future cash flows back to today's value. But what rate do we use? That's where **WACC** comes in.
+
+### 3.1 What is WACC?
+
+**WACC (Weighted Average Cost of Capital)** is the "hurdle rate"—the return required by both debt and equity investors.
+
+```
+WACC = (E/V) × Ke + (D/V) × Kd × (1 - Tax Rate)
+
+Where:
+- E = Market Value of Equity
+- D = Market Value of Debt
+- V = E + D (Total Value)
+- Ke = Cost of Equity (required return for shareholders)
+- Kd = Cost of Debt (interest rate on loans)
+- Tax Rate = Corporate tax rate
+```
+
+### 3.2 Cost of Equity (CAPM)
+
+How do we calculate the return shareholders require? Use the **CAPM Model**:
+
+```
+Ke = Rf + β × (Rm - Rf)
+
+Where:
+- Rf = Risk-Free Rate (e.g., 10-year Treasury yield, ~4-5%)
+- β (Beta) = Measure of the stock's volatility vs. the market
+- (Rm - Rf) = Equity Risk Premium (market return minus risk-free, ~5-7%)
+```
+
+**Example:**
+| Input | Value |
+|-------|-------|
+| Risk-Free Rate (Rf) | 4.5% |
+| Beta (β) | 1.2 |
+| Equity Risk Premium | 6.0% |
+| **Cost of Equity (Ke)** | **4.5% + 1.2 × 6.0% = 11.7%** |
+
+### 3.3 Putting It Together: WACC Calculation
+
+| Item | Calculation | Value |
+|------|-------------|-------|
+| Cost of Equity (Ke) | From CAPM | 11.7% |
+| Cost of Debt (Kd) | Interest rate on debt | 6.0% |
+| Tax Rate | Corporate tax | 21% |
+| Debt/Value Ratio (D/V) | Target capital structure | 40% |
+| Equity/Value Ratio (E/V) | Target capital structure | 60% |
+
+**WACC Calculation:**
+```
+WACC = (0.60 × 11.7%) + (0.40 × 6.0% × (1 - 0.21))
+WACC = 7.02% + 1.90%
+WACC = 8.92% (rounded to 9.0%)
+```
+
+---
+
+## 4. Method 1: Precedent Transactions
 
 ### The Concept
-"What did the neighbors' businesses sell for?" We look at past M&A deals in the same industry.
+
+**"What did the neighbors' businesses sell for?"** We look at past M&A deals in the same industry and apply those multiples to our target.
 
 ### Formula
+
 ```
-Estimated Transaction Value = Target EBITDA × median Transaction Multiple
+Estimated Transaction Value = Target EBITDA × Median Transaction Multiple
 ```
 
 ### The Nuance
-You must add the **Control Premium**. If similar companies trade on the stock market at 10x EBITDA, a buyer might pay 13x EBITDA to take over the whole company.
+
+You must add the **Control Premium**. If similar companies trade on the stock market at 10x EBITDA, a buyer might pay 13x EBITDA to take over the whole company (that's the 30% premium).
 
 ### Example - Precedent Transactions
+
 | Acquirer | Target | Year | EV | EV/EBITDA | Premium |
 |----------|--------|------|-----|-----------|---------|
 | Buyer A | Company X | 2023 | $15B | 12x | 25% |
@@ -60,6 +151,7 @@ You must add the **Control Premium**. If similar companies trade on the stock ma
 | **Median** | | | | **11x** | **20%** |
 
 ### Applying to Your Target
+
 | Item | Value |
 |------|-------|
 | Target EBITDA | $500M |
@@ -72,22 +164,32 @@ You must add the **Control Premium**. If similar companies trade on the stock ma
 
 ---
 
-## 4. Method 2: Corporate DCF (Unlevered FCF)
+## 5. Method 2: Corporate DCF (Unlevered FCF)
 
 ### The Concept
+
 How much cash can this business produce for *everyone* (both the people who lent money and the people who own shares)?
 
 ### The "IB First" Difference
+
 Bankers use **Unlevered FCF** because it's independent of how the company is funded. It allows us to see how much cash the company makes *before* we decide how much debt to use to buy it.
 
-### Formula
+### Core Formula
+
 ```
-Unlevered Free Cash Flow (UFCF) = EBIT × (1 - Tax Rate) + D&A - CapEx - ΔNWC
+Unlevered Free Cash Flow (UFCF) = NOPAT + D&A - CapEx - ΔNWC
 ```
+
+Where:
+- **NOPAT** = EBIT × (1 - Tax Rate)
+- **D&A** = Depreciation & Amortization (non-cash, added back)
+- **CapEx** = Capital Expenditures (cash spent on equipment)
+- **ΔNWC** = Change in Net Working Capital
 
 ### Step-by-Step DCF for M&A
 
 #### Step 1: Project Revenue and EBIT
+
 | Year | Revenue | Growth | EBIT Margin | EBIT |
 |------|---------|--------|-------------|------|
 | 1 | $1,000M | 10% | 20% | $200M |
@@ -97,12 +199,14 @@ Unlevered Free Cash Flow (UFCF) = EBIT × (1 - Tax Rate) + D&A - CapEx - ΔNWC
 | 5 | $1,464M | 10% | 20% | $293M |
 
 #### Step 2: Calculate NOPAT
+
 ```
 NOPAT = EBIT × (1 - Tax Rate)
 Example: Year 1 NOPAT = $200M × (1 - 0.21) = $158M
 ```
 
 #### Step 3: Calculate Unlevered FCF
+
 | Year | NOPAT | +D&A | -CapEx | -ΔNWC | = UFCF |
 |------|-------|------|--------|-------|--------|
 | 1 | $158 | $50 | -$60 | -$20 | $128 |
@@ -112,6 +216,7 @@ Example: Year 1 NOPAT = $200M × (1 - 0.21) = $158M
 | 5 | $231 | $73 | -$88 | -$29 | $187 |
 
 #### Step 4: Discount to Present Value (WACC = 10%)
+
 ```
 PV = UFCF ÷ (1 + WACC)^t
 Example Year 1: $128 ÷ 1.10^1 = $116M
@@ -127,40 +232,96 @@ Example Year 1: $128 ÷ 1.10^1 = $116M
 | **Sum (1-5)** | | | **$580** |
 
 #### Step 5: Terminal Value
+
+There are **two methods** bankers use for Terminal Value:
+
+---
+
+**Method A: Gordon Growth (Perpetuity Growth)**
+
+Assumes the company grows at a constant rate forever.
+
 ```
 Terminal Value = UFCF_5 × (1 + g) ÷ (WACC - g)
-g = 3% (perpetual growth)
-TV = $187 × 1.03 ÷ (0.10 - 0.03) = $2,753M
-PV of TV = $2,753 ÷ 1.10^5 = $1,709M
+
+Where:
+- g = Perpetual growth rate (typically 2-3%)
+- WACC = Discount rate
+
+Example: 
+- UFCF_5 = $187M
+- g = 3%
+- WACC = 10%
+- TV = $187 × 1.03 ÷ (0.10 - 0.03) = $2,753M
+- PV of TV = $2,753 ÷ 1.10^5 = $1,709M
 ```
 
-#### Step 6: Enterprise Value
+---
+
+**Method B: Exit Multiple (Market Comparables)**
+
+Assumes you sell the company at a multiple similar to public market comparables.
+
 ```
-Enterprise Value = PV of FCF + PV of TV
-EV = $580M + $1,709M = $2,289M
+Terminal Value = EBITDA_5 × Exit Multiple
+
+Example:
+- EBITDA_5 = $366M ($293M EBIT + $73M D&A)
+- Exit Multiple = 8.0x
+- TV = $366M × 8.0 = $2,928M
+- PV of TV = $2,928 ÷ 1.10^5 = $1,819M
+```
+
+**Which method do bankers prefer?** For M&A, **Exit Multiple** is often preferred because:
+1. It's easier to explain to clients ("We're selling at 8x EBITDA, like the comparables").
+2. Perpetual growth rates above 3% are unrealistic for mature businesses.
+
+---
+
+#### Step 6: Enterprise Value
+
+```
+Enterprise Value = PV of FCF + PV of Terminal Value
+EV = $580M + $1,709M = $2,289M (Gordon Growth)
+EV = $580M + $1,819M = $2,399M (Exit Multiple)
+```
+
+#### Step 7: Bridge to Equity Value
+
+```
+Equity Value = Enterprise Value - Net Debt
+
+Example:
+- EV = $2,289M
+- Less: Net Debt = ($500M)
+- Equity Value = $1,789M
+- Implied Share Price = Equity Value ÷ Shares Outstanding
 ```
 
 **Python Tool**: [Run Corporate_DCF.py](./Python/Corporate_DCF.py)
 
 ---
 
-## 5. Method 3: Accretion/Dilution Analysis
+## 6. Method 3: Accretion/Dilution Analysis
 
 ### The Concept
+
 When one company buys another, the most important question for the buyer's shareholders is: **"Does this make my Earnings Per Share (EPS) go up or down?"**
 
 ### Formulas
+
 ```
 Accretion % = (New EPS - Old EPS) ÷ Old EPS
 
-New EPS = Combined Net Income ÷ Combined Shares
+New EPS = Combined Net Income ÷ Combined Shares Outstanding
 ```
 
 ### Example - Accretion Analysis
+
 | Item | Acquirer (Buyer) | Target | Combined |
 |------|------------------|--------|----------|
 | Net Income | $500M | $100M | $600M |
-| Shares Outstanding | 100M | 50M | 120M |
+| Shares Outstanding | 100M | 50M | 120M (acquirer issues 20M new shares to pay) |
 | EPS | $5.00 | $2.00 | $5.00 |
 
 **Calculation:**
@@ -168,17 +329,63 @@ New EPS = Combined Net Income ÷ Combined Shares
 - Combined EPS: $600M ÷ 120M = $5.00
 - **Accretion/(Dilution):** 0%
 
-### If EPS Goes Up = Accretive (Good Deal!)
-### If EPS Goes Down = Dilutive (Bad Deal!)
+### Interpretation
+
+- **EPS Goes Up** = **Accretive** (Good Deal!)
+- **EPS Goes Down** = **Dilutive** (Bad Deal!)
 
 ---
 
-## 6. Summary
-Investment Banking valuation is about finding the **clearing price** for a deal. 
-1. We look at what others paid (**Precedents**).
-2. We look at the total cash available (**UFCF**).
-3. We check if the buyer's shareholders will be happy (**Accretion/Dilution**).
+## 7. IB Interview Cheat Sheet
 
-**High Retention Recap:** If you want to buy the whole shop, look at the neighbor's price, make sure the shop makes enough cash to justify the total "Transaction Price Tag," and ensure the deal makes your shareholders richer, not poorer.
+Memorize these formulas for technical interviews:
+
+### Cash Flow Formulas
+
+| Formula | Description |
+|---------|-------------|
+| **FCFF = NOPAT + D&A - CapEx - ΔNWC** | Free Cash Flow to Firm (Unlevered) |
+| **NOPAT = EBIT × (1 - Tax Rate)** | Cash flow available to all investors |
+| **ΔNWC = Current NWC - Prior NWC** | Change in Net Working Capital |
+
+### Valuation Formulas
+
+| Formula | Description |
+|---------|-------------|
+| **EV = PV of FCFs + PV of Terminal Value** | Enterprise Value |
+| **Equity Value = EV - Net Debt** | Value of shares |
+| **Implied Share Price = Equity Value ÷ Shares Outstanding** | Price per share |
+
+### Terminal Value Formulas
+
+| Formula | Description |
+|---------|-------------|
+| **TV (Gordon Growth) = FCFn × (1+g) ÷ (WACC - g)** | Perpetuity method |
+| **TV (Exit Multiple) = EBITDA_n × Multiple** | Multiple method |
+
+### Discount Rate Formulas
+
+| Formula | Description |
+|---------|-------------|
+| **CAPM: Ke = Rf + β × (Rm - Rf)** | Cost of Equity |
+| **WACC = (E/V) × Ke + (D/V) × Kd × (1-t)** | Weighted Average Cost of Capital |
+
+### M&A Premium
+
+| Formula | Description |
+|---------|-------------|
+| **Purchase Price = Equity Value × (1 + Premium%)** | Total deal value |
+
+---
+
+## 8. Summary
+
+Investment Banking valuation is about finding the **clearing price** for a deal.
+
+1. **Precedent Transactions:** Look at what others paid in similar deals.
+2. **Corporate DCF:** Project the cash flows and bring them to today's value.
+3. **Accretion/Dilution:** Ensure the buyer's EPS doesn't get diluted.
+
+**High Retention Recap:** If you want to buy the whole factory, look at the neighbor's price, make sure the machines produce enough cash to justify the total "Transaction Price Tag," and ensure the deal makes your shareholders richer, not poorer.
 
 **Python Tool**: [Run Corporate_DCF.py](./Python/Corporate_DCF.py)
