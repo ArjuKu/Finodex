@@ -71,7 +71,9 @@ In a DCF, we discount future cash flows back to today's value. But what rate do 
 
 ### 3.1 What is WACC?
 
-**WACC (Weighted Average Cost of Capital)** is the "hurdle rate"—the return required by both debt and equity investors.
+**WACC (Weighted Average Cost of Capital)** is the "hurdle rate"—the return required by both debt and equity investors. Think of it as the "rent" you pay for using other people's money to buy the factory.
+
+> **💡 Schweser Note:** If your factory generates a 7% return but your WACC is 9%, you are effectively destroying value. The WACC is the "Hurdle"—any deal must earn more than this rate to create value for investors.
 
 ```
 WACC = (E/V) × Ke + (D/V) × Kd × (1 - Tax Rate)
@@ -105,6 +107,8 @@ Where:
 | Beta (β) | 1.2 |
 | Equity Risk Premium | 6.0% |
 | **Cost of Equity (Ke)** | **4.5% + 1.2 × 6.0% = 11.7%** |
+
+> **💡 Schweser Note (Beta):** Think of Beta as the factory's "sensitivity dial." A β of 1.2 means: if the market moves 10% up or down, this factory's value is expected to swing 12%. Higher Beta = riskier factory = investors demand a higher return.
 
 ### 3.3 Putting It Together: WACC Calculation
 
@@ -140,6 +144,8 @@ Estimated Transaction Value = Target EBITDA × Median Transaction Multiple
 ### The Nuance
 
 You must add the **Control Premium**. If similar companies trade on the stock market at 10x EBITDA, a buyer might pay 13x EBITDA to take over the whole company (that's the 30% premium).
+
+> **💡 Schweser Note (The "Takeover Tax"):** The stock price you see on Google Finance is for a "Passive Investor"—one tiny slice of the factory. You can't fire the CEO or sell the land with one share. To buy the whole building and change the business, you must pay a "Takeover Tax" (Control Premium) to convince everyone to sell.
 
 ### Example - Precedent Transactions
 
@@ -185,6 +191,11 @@ Where:
 - **D&A** = Depreciation & Amortization (non-cash, added back)
 - **CapEx** = Capital Expenditures (cash spent on equipment)
 - **ΔNWC** = Change in Net Working Capital
+
+> **💡 Schweser Notes (Cash vs. Accounting):**
+> - **+ D&A:** "Accounting fiction." Depreciation isn't a real cash outflow—machines just got older on paper. We add it back because the cash is still in the building.
+> - **- CapEx:** "The Reality Check." You can't run a factory for free. This is the actual check you write to buy or upgrade equipment.
+> - **- ΔNWC:** "The Working Cash Trap." If customers haven't paid their invoices yet (Accounts Receivable), that money is "trapped" and isn't truly "Free" cash yet.
 
 ### Step-by-Step DCF for M&A
 
@@ -276,6 +287,10 @@ Example:
 1. It's easier to explain to clients ("We're selling at 8x EBITDA, like the comparables").
 2. Perpetual growth rates above 3% are unrealistic for mature businesses.
 
+> **💡 Schweser Note (Theory vs. Practice):**
+> - **Gordon Growth:** Treats the factory as a "Forever Asset" that grows at the rate of inflation (2-3%). Useful for stable, mature businesses.
+> - **Exit Multiple:** Treats the factory as a "Deal Asset." We're not running it forever—we're planning to sell it to someone else in 5 years based on current market conditions. Bankers prefer this because it's anchored in real-world transaction multiples.
+
 ---
 
 #### Step 6: Enterprise Value
@@ -328,6 +343,8 @@ New EPS = Combined Net Income ÷ Combined Shares Outstanding
 - Buyer EPS before: $5.00
 - Combined EPS: $600M ÷ 120M = $5.00
 - **Accretion/(Dilution):** 0%
+
+> **💡 Schweser Note (The "Pie Slicing" Analogy):** When a buyer issues shares to buy a target, they are creating more "slices" of their own pie. If the target's earnings don't add enough "filling" to compensate for the extra slices, the original shareholders get less per slice (**Dilution**). The goal is always to grow the **EPS** (the size of each slice).
 
 ### Interpretation
 
