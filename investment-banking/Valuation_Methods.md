@@ -89,7 +89,7 @@ Where:
 
 ### 3.2 Cost of Equity (CAPM)
 
-How do we calculate the return shareholders require? Use the **CAPM Model**:
+How do we calculate the return shareholders require? Use the **Capital Asset Pricing Model, also known as the CAPM**:
 
 ```
 Ke = Rf + β × (Rm - Rf)
