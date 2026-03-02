@@ -66,7 +66,7 @@ def median(vals):
 
 # ------------------------------------------------------------------
 # 2. CALCULATE MEDIAN MULTIPLES
-#    💡 SCHWESER NOTE: POLLING THE AUDIENCE
+#    💡NOTE: POLLING THE AUDIENCE
 #    We're looking at the "neighbors" to see what the market
 #    "temperature" is. Median avoids the "Crazy Neighbor" outlier.
 # ------------------------------------------------------------------
@@ -102,7 +102,7 @@ print(f"RECOMMENDED IPO PRICE:  ${ipo_price_per_share:.2f}")
 print(f"Gross Proceeds Raised:  ${gross_proceeds:,.0f} M")
 
 # The Story
-print(f"\n💡 SCHWESER INSIGHT: THE 'FIRST DATE' STRATEGY!")
+print(f"\n💡 INSIGHT: THE 'FIRST DATE' STRATEGY!")
 print(f"   You're pricing at a {IPO_DISCOUNT_PCT:.0%} discount to fair value.")
 print(f"   This creates a 'Day 1 Pop'—making your new shareholders happy.")
 print(f"   Happy shareholders = future business and a strong IPO story.")
