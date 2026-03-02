@@ -65,6 +65,42 @@ Example:
 - IPO Price = $50 × 0.85 = $42.50
 ```
 
+---
+
+### 📊 IPO Pricing Waterfall: Step-by-Step Example
+
+Here is how an investment bank builds the IPO price from scratch:
+
+| Step | Metric | Calculation | Value |
+|------|--------|------------|-------|
+| 1 | Target Net Income | Given | $100M |
+| 2 | Shares Outstanding | Given | 50M |
+| 3 | Target EPS | $100M ÷ 50M | $2.00 |
+| 4 | Peer Median P/E | From comps | 20.0x |
+| 5 | **Fair Value per Share** | $2.00 × 20.0x | **$40.00** |
+| 6 | IPO Discount (15%) | $40.00 × 15% | $6.00 |
+| 7 | **IPO Price per Share** | $40.00 - $6.00 | **$34.00** |
+| 8 | Gross Proceeds | $34.00 × 50M | **$1,700M** |
+
+> **💡 Schweser Insight:** The "Fair Value" ($40) is the math. The "IPO Price" ($34) is the art. That $6 difference is the "gift" to early investors to ensure a successful launch.
+
+---
+
+### 📊 Sector-Specific Multiples: Which One to Use?
+
+Not all multiples are created equal. Here's the industry cheat sheet:
+
+| Sector | Primary Multiple | Why? |
+|--------|-----------------|------|
+| **Banks / Financial Services** | P/E, P/B | Interest income is the core driver; book value matters for solvency. |
+| **Manufacturing / Industrials** | EV/EBITDA | D&A varies by company age; EBITDA normalizes for this. |
+| **Software / Tech** | EV/Revenue, P/S | Many software companies aren't profitable yet; revenue is the growth metric. |
+| **Retail** | EV/EBITDA, P/E | Physical inventory and real estate make EBITDA important. |
+| **Oil & Gas** | EV/EBITDA, EV/Production | Cash flow from operations is key; production volume matters. |
+| **Telecom** | EV/EBITDA, EV/FCF | Heavy CapEx makes Free Cash Flow critical. |
+
+> **💡 Interview Tip:** If you're stuck in an interview, default to **EV/EBITDA** for most companies—it's the most universal multiple because it removes the effects of capital structure and accounting policies.
+
 **Python Tool**: [Run IPO_Pricing.py](./Python/IPO_Pricing.py)
 
 > **🏃 Executive Summary:** IPO Pricing is about **managing expectations**. You intentionally leave money on the table (the "Pop") to ensure a successful launch and happy first-day investors.
@@ -100,6 +136,39 @@ Purchase Price = Target Equity Value + Control Premium + Synergies
 
 ---
 
+### 📊 M&A Pricing Waterfall: Full Example
+
+Here is the complete pricing math for a strategic acquisition:
+
+| Step | Item | Calculation | Value |
+|------|------|-------------|-------|
+| 1 | Target EBITDA | Given | $200M |
+| 2 | Peer Median EV/EBITDA | From comps | 10.0x |
+| 3 | Implied EV | $200M × 10.0x | $2,000M |
+| 4 | Less: Net Debt | Given | ($500M) |
+| 5 | **Standalone Equity Value** | $2,000M - $500M | **$1,500M** |
+| 6 | Control Premium (25%) | $1,500M × 25% | $375M |
+| 7 | Synergies (PV) | Strategic value | $250M |
+| 8 | Transaction Fees | Banker + Legal + Audit | $50M |
+| 9 | **Total Acquisition Price** | Sum of above | **$2,175M** |
+
+---
+
+### Control Premium Benchmarks
+
+How much extra do buyers pay? Here's the historical data:
+
+| Scenario | Typical Premium |
+|----------|-----------------|
+| Friendly Takeover | 15% - 30% |
+| Hostile Takeover | 30% - 50% |
+| Cross-border Deal | 20% - 40% |
+| Strategic vs. Financial Buyer | +10% - 20% (strategic pays more) |
+
+> **💡 Schweser Note:** The premium is essentially "buying the option to change the company." You're paying for the right to fire the CEO, sell assets, or merge operations.
+
+---
+
 ## Peer Multiples - The "Real Estate Comps"
 
 The most common way to price a company is to look at what similar companies are trading for.
@@ -116,6 +185,38 @@ You don't value a house in a vacuum. You look at the 4 houses sold on the same s
 2. **Collect Multiples:** P/E, EV/EBITDA, P/B.
 3. **Take the Median:** Ignore the highs and lows.
 4. **Apply to Target:** Multiply your target's metrics by the median.
+
+---
+
+### 📊 Comparables Analysis: Full Example
+
+| Peer | EV ($M) | EBITDA | EV/EBITDA | Net Income | P/E |
+|------|---------|--------|-----------|------------|-----|
+| Company A | $15,000 | $1,500 | 10.0x | $750 | 20.0x |
+| Company B | $12,000 | $1,200 | 10.0x | $600 | 20.0x |
+| Company C | $18,000 | $1,500 | 12.0x | $720 | 25.0x |
+| Company D | $8,000 | $1,000 | 8.0x | $400 | 20.0x |
+| **Median** | | | **10.0x** | | **20.0x** |
+
+#### Applying to Your Target
+
+| Your Target | Calculation | Implied Value |
+|-------------|-------------|---------------|
+| EBITDA = $200M | $200M × 10.0x | EV = $2,000M |
+| Net Income = $100M | $100M × 20.0x | Equity = $2,000M |
+
+> **💡 Schweser Note:** We use **Median** (not Average) because it's robust against outliers. If one company traded at 50x (a "crazy neighbor"), the Average would be skewed, but the Median would still be reasonable.
+
+---
+
+### 📊 Valuation vs. Pricing: When to Use What?
+
+| Method | Best For | Key Strength | Key Weakness |
+|--------|----------|--------------|--------------|
+| **Precedent Transactions** | M&A Deals | Includes control premium | Old data, may be outdated |
+| **DCF** | Intrinsic Value | Theoretical foundation | Highly sensitive to WACC |
+| **Peer Comparables** | IPOs, Quick估值 | Fast, market-based | Ignores growth potential |
+| **Asset-Based** | Distressed, Holdings | Floor value | Ignores future earnings |
 
 **Python Tool**: [Run IPO_Pricing.py](./Python/IPO_Pricing.py)
 

@@ -128,6 +128,81 @@ In a typical LBO:
 - Sell to another PE firm, a strategic buyer, or IPO.
 - Because debt is lower, the **Equity Value** (what the PE firm keeps) is much higher.
 
+---
+
+## 📊 Step-by-Step Paper LBO (The "Workbook" Example)
+
+Here is a complete numerical walkthrough of an LBO. This is the exact type of calculation you'd do on a whiteboard in an interview.
+
+### The Inputs
+
+| Input | Value |
+|-------|-------|
+| Purchase EV | $1,000M |
+| Entry EBITDA | $200M |
+| Entry Multiple | 5.0x |
+| Debt % | 70% ($700M) |
+| Equity % | 30% ($300M) |
+| EBITDA Growth | 5% per year |
+| Interest Rate | 8% |
+| Tax Rate | 21% |
+| CapEx % of EBITDA | 25% |
+| Exit Multiple | 5.0x (same as entry) |
+
+---
+
+### Year 1: The Math
+
+| Line Item | Calculation | Value ($M) |
+|-----------|-------------|-------------|
+| **EBITDA** | Year 0 × (1 + 5%) | $210M |
+| **Interest** | $700M × 8% | $56M |
+| **EBT** | $210M - $56M | $154M |
+| **Tax** | $154M × 21% | $32M |
+| **Net Income** | $154M - $32M | $122M |
+| **CapEx** | $210M × 25% | $53M |
+| **Cash for Debt** | $122M + $53M (add back D&A*) | $175M |
+
+*D&A is already "in" EBITDA as a non-cash expense, so we add it back to get real cash.*
+
+---
+
+### Year 1-5: Debt Paydown Schedule
+
+| Year | Beginning Debt | Interest | Cash Paydown | Ending Debt |
+|------|----------------|----------|--------------|-------------|
+| 1 | $700M | $56M | $175M | $525M |
+| 2 | $525M | $42M | $184M | $341M |
+| 3 | $341M | $27M | $193M | $148M |
+| 4 | $148M | $12M | $203M | $0M* |
+| 5 | $0M | $0M | $213M | $0M |
+
+*Note: In Year 4, the debt is fully paid off. Any remaining cash stays in the company as "cash on hand."
+
+---
+
+### Exit: Year 5 Valuation
+
+| Line Item | Calculation | Value ($M) |
+|-----------|-------------|-------------|
+| Exit EBITDA | $200M × 1.05^5 | $255M |
+| Exit EV | $255M × 5.0x | $1,276M |
+| Less: Remaining Debt | | $0M |
+| **Exit Equity Value** | | **$1,276M** |
+
+---
+
+### The Return: IRR & MoM
+
+| Metric | Calculation | Result |
+|--------|-------------|--------|
+| Entry Equity | | $300M |
+| Exit Equity | | $1,276M |
+| **Multiple of Money (MoM)** | $1,276 ÷ $300 | **4.25x** |
+| **IRR** | (4.25)^(1/5) - 1 | **33.4%** |
+
+> **💡 Schweser Insight:** A 33% IRR is exceptional. In this example, the majority of the return came from **Deleveraging** (paying off $700M of debt) rather than EBITDA growth or multiple expansion.
+
 **Python Tool**: [Run LBO_Model.py](./Python/LBO_Model.py)
 
 ---
@@ -157,6 +232,49 @@ IRR = 2.0^0.2 - 1
 IRR = 1.149 - 1
 IRR = 14.9% (rounded to 15%)
 ```
+
+---
+
+### 📊 Return Attribution: Where Did the Money Come From?
+
+In an LBO, the total gain is broken down into three components. This is a classic interview question.
+
+| Source of Return | Explanation | Example ($M) |
+|------------------|-------------|--------------|
+| **1. Deleveraging** | Profit from paying down debt. Equity grows faster because debt shrinks. | +$200M |
+| **2. EBITDA Growth** | Profit from the business doing better. | +$150M |
+| **3. Multiple Expansion** | Profit from selling at a higher multiple than you bought. | +$50M |
+| **Total Gain** | | **+$400M** |
+
+#### How to Calculate Attribution
+
+```
+Entry Equity = $300M
+Exit Equity = $700M (assuming no debt left)
+Total Gain = $700M - $300M = $400M
+
+Attribution Math:
+- Deleveraging = Entry Debt × (Debt Paydown %)
+- EBITDA Growth = Entry EBITDA × Growth Rate × Years
+- Multiple Expansion = Exit EBITDA × (Exit Multiple - Entry Multiple)
+```
+
+---
+
+### 🧮 IRR Shortcuts (Mental Math)
+
+In interviews, you won't have a calculator. Here's the mental math shortcut:
+
+| MoM (Multiple of Money) | 3 Years | 5 Years | 7 Years |
+|-------------------------|---------|---------|---------|
+| 1.5x | 14% | 8% | 6% |
+| 2.0x | 26% | 15% | 10% |
+| 2.5x | 35% | 20% | 14% |
+| 3.0x | 44% | 25% | 18% |
+| 4.0x | 59% | 33% | 24% |
+
+> **💡 Schweser Note:** The "Rule of 72" for IRR: **72 ÷ Years = Approximate IRR for 2.0x return.**
+> - 2x in 5 years → 72 ÷ 5 ≈ 14% IRR ✓
 
 ### 💡 Schweser Note (The Time Trap)
 
