@@ -78,6 +78,9 @@ OUTPUT_FOLDER         = "charts"
 
 # ------------------------------------------------------------------
 # 1. FETCH MARKET DATA (or fall back to hard-coded)
+#    💡 SCHWESER NOTE: THE RISK-FREE BENCHMARK
+#    This is what you'd earn if you let the government hold your money.
+#    It's the "floor" for all other investments.
 # ------------------------------------------------------------------
 def get_rf() -> float:
     """Download 10-Year US Treasury yield from Yahoo; fallback if fail"""
@@ -101,7 +104,9 @@ cost_of_eq = risk_free + beta * MARKET_RISK_PREMIUM
 
 # ------------------------------------------------------------------
 # 2. PROJECT 5-YEAR FCFE  (core DCF step 1)
-#    FCFE = Net Income – regulatory capital – net borrowing
+#    💡 SCHWESER NOTE: THE "RENT CHECK"
+#    FCFE = Money left for shareholders after the government (taxes)
+#    and the bank (regulatory capital) get their cut.
 # ------------------------------------------------------------------
 def project_five_year_fcfe():
     rows = []
@@ -139,6 +144,9 @@ upside_downside = (implied_price - CURRENT_PRICE) / CURRENT_PRICE
 
 # ------------------------------------------------------------------
 # 5. PRINT A HUMAN STORY
+#    💡 SCHWESER NOTE: THE "MARGIN OF SAFETY"
+#    If Implied Price > Current Price, you've found a deal!
+#    The stock is worth more than the market thinks.
 # ------------------------------------------------------------------
 print("\n"+"="*60)
 print(f"{TICKER}  Teaching DCF  ({dt.datetime.now().strftime('%Y-%m-%d')})")
@@ -150,6 +158,16 @@ print(f"PV Terminal:      ${terminal_pv:,.0f}M")
 print(f"Implied Price:      ${implied_price:.2f}")
 print(f"Current Price:      ${CURRENT_PRICE:.2f}")
 print(f"Upside/(Downside):  {upside_downside:.1%}")
+
+# The Story
+if upside_downside > 0:
+    print(f"\n💡 SCHWESER INSIGHT: This bank is trading at a DISCOUNT!")
+    print(f"   You're buying ${implied_price:.2f} of value for ${CURRENT_PRICE:.2f}.")
+    print(f"   That's a {upside_downside:.1%} Margin of Safety.")
+else:
+    print(f"\n💡 SCHWESER INSIGHT: This bank is trading at a PREMIUM.")
+    print(f"   The market thinks it's worth more than your DCF says.")
+    print(f"   Be careful—this might be overvalued.")
 
 # ------------------------------------------------------------------
 # 6. EXTRA INPUTS – safe places to add more detail

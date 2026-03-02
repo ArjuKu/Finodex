@@ -51,6 +51,9 @@ OUTPUT_FOLDER         = "."         # "." = same folder as this .py file
 
 # ------------------------------------------------------------------
 # 1. BUILD THE DEAL AT CLOSING
+#    💡 SCHWESER NOTE: THE "DOWN PAYMENT"
+#    You're buying a factory with mostly debt (the mortgage)
+#    and a little bit of your own cash (equity).
 # ------------------------------------------------------------------
 debt_at_close = PURCHASE_EV_M * DEBT_PCT
 equity_at_close = PURCHASE_EV_M - debt_at_close
@@ -65,6 +68,9 @@ print(f"Equity:          ${equity_at_close:,.0f} M  ({1-DEBT_PCT:.0%})")
 
 # ------------------------------------------------------------------
 # 2. 5-YEAR FORECAST – EBITDA → CASH → DEBT PAYDOWN
+#    💡 SCHWESER NOTE: THE "RENT CHECK"
+#    Using the factory's widgets (EBITDA) to pay the bank (interest)
+#    and eventually kill the mortgage (debt paydown).
 # ------------------------------------------------------------------
 forecast = []
 ebitda = ENTRY_EBITDA_M
@@ -112,6 +118,18 @@ print(f"Less Debt:        -${forecast_df.iloc[-1]['Debt End']:,.0f} M")
 print(f"Exit Equity:       ${exit_equity_value:,.0f} M")
 print(f"Multiple of Money:  {mom:.2f}×")
 print(f"IRR (5-yr hold):     {irr*100:.1f}%")
+
+# The Story
+print(f"\n💡 SCHWESER INSIGHT: THE POWER OF LEVERAGE!")
+if irr > 0.20:
+    print(f"   A {irr*100:.1f}% IRR is the GOLD STANDARD in PE.")
+    print(f"   You've successfully used debt to supercharge your returns.")
+elif irr > 0.15:
+    print(f"   A {irr*100:.1f}% IRR is solid—above the typical 15% hurdle.")
+    print(f"   The deal creates value, but not extraordinary value.")
+else:
+    print(f"   A {irr*100:.1f}% IRR is below typical PE standards (15%+).")
+    print(f"   Either the growth assumptions are too low, or the debt is too expensive.")
 
 # ------------------------------------------------------------------
 # 5. PURE-MATPLOTLIB CHARTS (saved in SAME folder)
