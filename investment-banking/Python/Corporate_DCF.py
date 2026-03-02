@@ -78,7 +78,7 @@ OUTPUT_FOLDER         = "charts"
 
 # ------------------------------------------------------------------
 # 1. FETCH MARKET DATA (or fall back to hard-coded)
-#    💡 SCHWESER NOTE: THE RISK-FREE BENCHMARK
+#    💡NOTE: THE RISK-FREE BENCHMARK
 #    This is what you'd earn if you let the government hold your money.
 #    It's the "floor" for all other investments.
 # ------------------------------------------------------------------
@@ -104,7 +104,7 @@ cost_of_eq = risk_free + beta * MARKET_RISK_PREMIUM
 
 # ------------------------------------------------------------------
 # 2. PROJECT 5-YEAR FCFE  (core DCF step 1)
-#    💡 SCHWESER NOTE: THE "RENT CHECK"
+#    💡NOTE: THE "RENT CHECK"
 #    FCFE = Money left for shareholders after the government (taxes)
 #    and the bank (regulatory capital) get their cut.
 # ------------------------------------------------------------------
@@ -144,7 +144,7 @@ upside_downside = (implied_price - CURRENT_PRICE) / CURRENT_PRICE
 
 # ------------------------------------------------------------------
 # 5. PRINT A HUMAN STORY
-#    💡 SCHWESER NOTE: THE "MARGIN OF SAFETY"
+#    💡NOTE: THE "MARGIN OF SAFETY"
 #    If Implied Price > Current Price, you've found a deal!
 #    The stock is worth more than the market thinks.
 # ------------------------------------------------------------------

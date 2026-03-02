@@ -51,7 +51,7 @@ OUTPUT_FOLDER         = "."         # "." = same folder as this .py file
 
 # ------------------------------------------------------------------
 # 1. BUILD THE DEAL AT CLOSING
-#    💡 SCHWESER NOTE: THE "DOWN PAYMENT"
+#    💡 NOTE: THE "DOWN PAYMENT"
 #    You're buying a factory with mostly debt (the mortgage)
 #    and a little bit of your own cash (equity).
 # ------------------------------------------------------------------
@@ -68,7 +68,7 @@ print(f"Equity:          ${equity_at_close:,.0f} M  ({1-DEBT_PCT:.0%})")
 
 # ------------------------------------------------------------------
 # 2. 5-YEAR FORECAST – EBITDA → CASH → DEBT PAYDOWN
-#    💡 SCHWESER NOTE: THE "RENT CHECK"
+#    💡NOTE: THE "RENT CHECK"
 #    Using the factory's widgets (EBITDA) to pay the bank (interest)
 #    and eventually kill the mortgage (debt paydown).
 # ------------------------------------------------------------------
