@@ -182,6 +182,13 @@ How much cash can this business produce for *everyone* (both the people who lent
 
 Bankers use **Unlevered FCF** because it's independent of how the company is funded. It allows us to see how much cash the company makes *before* we decide how much debt to use to buy it.
 
+> **💡 Schweser Note (Banks vs. Corporates):** The DCF model above is designed for **non-financial corporations** (like a factory or tech company). For **Banks and Financial Institutions**, the valuation approach changes because:
+> 1. **Debt is a raw material**, not just funding—a bank's "inventory" is money itself.
+> 2. Instead of WACC, we use **Cost of Equity (CAPM)** directly because banks are inherently "levered."
+> 3. We use **FCFE (Free Cash Flow to Equity)** instead of FCFF.
+>
+> See the **Python Model** below for a dynamic Bank DCF that pulls live market data (Beta, Treasury yields) to value financial institutions.
+
 ### Core Formula
 
 ```
@@ -315,6 +322,8 @@ Example:
 - Implied Share Price = Equity Value ÷ Shares Outstanding
 ```
 
+> **💡 Live Model:** The Python model below is a **Dynamic Bank DCF** that pulls live market data (Beta, 10-Year Treasury) via yfinance. Perfect for quick valuation of financial institutions!
+
 **Python Tool**: [Run Corporate_DCF.py](./Python/Corporate_DCF.py)
 
 > **🏃 Executive Summary:** This is an **intrinsic valuation** method. It answers: *"What is this business worth based solely on the cash it will generate in the future?"* While theoretically the most "correct," it is highly sensitive to assumptions—change the WACC by 1%, and the value can swing by millions.
@@ -411,7 +420,7 @@ Investment Banking valuation is about finding the **clearing price** for a deal.
 
 **High Retention Recap:** If you want to buy the whole factory, look at the neighbor's price, make sure the machines produce enough cash to justify the total "Transaction Price Tag," and ensure the deal makes your shareholders richer, not poorer.
 
-**Python Tool**: [Run Corporate_DCF.py](./Python/Corporate_DCF.py)
+**Python Tool**: [Run Dynamic Bank DCF](./Python/Corporate_DCF.py)
 
 ---
 

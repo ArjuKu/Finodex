@@ -1,82 +1,217 @@
-"""
-CORPORATE DCF VALUATION MODEL (Unlevered FCF)
-=============================================
-This model values a company based on the cash it generates for all investors.
+# ======================================================================
+#  BANK DCF TEMPLATE – BEGINNER EDITION
+# ======================================================================
+#  WHAT THIS FILE DOES
+#  -------------------
+#  1. Asks you for a few financial numbers (inside the yellow fence)
+#  2. Projects 5 years of Free Cash Flow to Equity (FCFE)
+#  3. Adds a "terminal value" for all cash flows after year 5
+#  4. Discounts everything back to today's dollars
+#  5. Tells you the implied share price and upside vs. current price
+#  6. Draws two simple charts (no seaborn needed)
+#
+#  HOW TO USE
+#  ----------
+#  a) Install packages (only once):
+#        pip install yfinance matplotlib pandas numpy
+#  b) Scroll to the yellow fence below, change ONLY those numbers
+#  c) Save file → run in VS Code terminal:  python filename.py
+#
+#  WANT MORE DETAIL?
+#  -----------------
+#  Search for "EXTRA INPUTS" in the code – comments show safe places
+#  to add new lines (extra years, macro scenarios, etc.) without breaking
+# ======================================================================
 
-HOW TO USE:
------------
-1. Edit the 'INPUTS' section with your target company's data.
-2. Run the script to see the 'Enterprise Value' and 'Equity Value'.
-"""
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import yfinance as yf
+import os
+import datetime as dt
 
-def calculate_corporate_dcf():
-    # --- INPUTS ---
-    print("--- 1. COMPANY DATA INPUTS ---")
-    # REPLACE WITH THE COMPANY YOU ARE EVALUATING
-    company_name = "[ENTER COMPANY NAME]"
-    current_revenue = 1000.0  # $ in millions
-    revenue_growth = 0.10     # 10% annual growth
-    ebit_margin = 0.20        # 20% operating margin
-    tax_rate = 0.21           # 21% corporate tax rate
-    
-    capex_pct = 0.05          # 5% for Capital Expenditures
-    depreciation_pct = 0.04   # 4% for Depreciation
-    change_nwc_pct = 0.02     # 2% for Change in Net Working Capital
-    
-    wacc = 0.09               # 9% Weighted Average Cost of Capital
-    terminal_growth = 0.025   # 2.5% Perpetual Growth Rate
-    
-    net_debt = 500.0          # $ in millions
-    shares_outstanding = 50.0 # millions of shares
+# ------------------------------------------------------------------
+# 0. QUICK INSTALL CHECK (uncomment if you want to auto-install)
+# ------------------------------------------------------------------
+# import subprocess, sys
+# for pkg in ['yfinance', 'matplotlib', 'pandas', 'numpy']:
+#     subprocess.check_call([sys.executable, '-m', 'pip', 'install', pkg])
 
-    print(f"\nValuing {company_name} using Unlevered Free Cash Flow...")
+# ------------------------------------------------------------------
+# 🟡🟡🟡  BEGINNER INPUTS – CHANGE ONLY HERE  🟡🟡🟡
+# ------------------------------------------------------------------
+# Company identity
+TICKER                = "JPM"        # used to download beta & 10-Y Treasury
+CURRENT_PRICE         = 45.00        # today's market price ($)
+SHARES_OUTSTANDING_M  = 100          # shares in millions
 
-    # --- 5-YEAR FORECAST ---
-    print("\n--- 2. 5-YEAR CASH FLOW FORECAST ($M) ---")
-    print(f"{'Year':<6} | {'Revenue':<10} | {'EBIT':<10} | {'UFCF':<10} | {'PV':<10}")
-    print("-" * 55)
+# Starting income statement (all $ millions)
+NET_INTEREST_INCOME_0 = 1_200
+NON_INT_INCOME_0      = 400
+OPERATING_EXPENSE_0   = 850
+PROVISIONS_0          = 100
+NET_INCOME_0          = 500
 
-    sum_pv_ufcf = 0
-    proj_revenue = current_revenue
-    ufcf = 0
-    
+# Growth assumptions (decimal: 0.05 = 5 %)
+REVENUE_GROWTH        = 0.05   # top-line growth
+OPEX_GROWTH           = 0.04   # cost growth
+PROVISION_GROWTH      = 0.03   # loan-loss provision growth
+TERMINAL_GROWTH       = 0.03   # perpetual growth (≤ nominal GDP)
+
+# Bank-specific plug (teaching simplification)
+REGULATORY_CAP_PCT    = 0.03   # % of NI kept for regulatory capital
+NET_BORROWING_ANNUAL  = 80      # positive = issuing debt, negative = pay-down
+
+# Market data (set AUTO_* = False to lock your own number)
+AUTO_RF               = True
+AUTO_BETA             = True
+HARDCODED_RF          = 0.045
+HARDCODED_BETA        = 1.15
+MARKET_RISK_PREMIUM   = 0.06   # equity risk premium (your choice)
+
+# Output
+SAVE_PLOTS            = True
+OUTPUT_FOLDER         = "charts"
+# ------------------------------------------------------------------
+# 🔴  STOP – do NOT edit below unless you want to learn Python
+# ------------------------------------------------------------------
+
+# ------------------------------------------------------------------
+# 1. FETCH MARKET DATA (or fall back to hard-coded)
+# ------------------------------------------------------------------
+def get_rf() -> float:
+    """Download 10-Year US Treasury yield from Yahoo; fallback if fail"""
+    try:
+        return yf.Ticker("^TNX").history(period="1d")["Close"].iloc[-1] / 100
+    except Exception as e:
+        print("Could not fetch 10-Y Treasury:", e, "- using hard-coded value")
+        return HARDCODED_RF
+
+def get_beta(ticker: str) -> float:
+    """Download beta from Yahoo; fallback if fail"""
+    try:
+        return yf.Ticker(ticker).info.get("beta", HARDCODED_BETA)
+    except Exception as e:
+        print("Could not fetch beta:", e, "- using hard-coded value")
+        return HARDCODED_BETA
+
+risk_free = get_rf() if AUTO_RF else HARDCODED_RF
+beta = get_beta(TICKER) if AUTO_BETA else HARDCODED_BETA
+cost_of_eq = risk_free + beta * MARKET_RISK_PREMIUM
+
+# ------------------------------------------------------------------
+# 2. PROJECT 5-YEAR FCFE  (core DCF step 1)
+#    FCFE = Net Income – regulatory capital – net borrowing
+# ------------------------------------------------------------------
+def project_five_year_fcfe():
+    rows = []
     for year in range(1, 6):
-        proj_revenue *= (1 + revenue_growth)
-        ebit = proj_revenue * ebit_margin
-        tax = ebit * tax_rate
-        nopat = ebit - tax
-        
-        depreciation = proj_revenue * depreciation_pct
-        capex = proj_revenue * capex_pct
-        change_nwc = proj_revenue * change_nwc_pct
-        ufcf = nopat + depreciation - capex - change_nwc
-        
-        pv_ufcf = ufcf / ((1 + wacc) ** year)
-        sum_pv_ufcf += pv_ufcf
-        
-        print(f"{year:<6} | {proj_revenue:<10.1f} | {ebit:<10.1f} | {ufcf:<10.1f} | {pv_ufcf:<10.1f}")
+        ni = NET_INCOME_0 * ((1 + REVENUE_GROWTH) ** year)
+        reg_cap = ni * REGULATORY_CAP_PCT   # teaching plug
+        fcfe = ni - reg_cap - NET_BORROWING_ANNUAL
+        discount_factor = 1 / ((1 + cost_of_eq) ** year)
+        rows.append({
+            "Year": year,
+            "Net Income": ni,
+            "FCFE": fcfe,
+            "PV": fcfe * discount_factor
+        })
+    return pd.DataFrame(rows)
 
-    # --- TERMINAL VALUE ---
-    terminal_value = (ufcf * (1 + terminal_growth)) / (wacc - terminal_growth)
-    pv_terminal_value = terminal_value / ((1 + wacc) ** 5)
+proj_df = project_five_year_fcfe()
 
-    # --- VALUATION SUMMARY ---
-    enterprise_value = sum_pv_ufcf + pv_terminal_value
-    equity_value = enterprise_value - net_debt
-    implied_share_price = equity_value / shares_outstanding
+# ------------------------------------------------------------------
+# 3. TERMINAL VALUE  (core DCF step 2)
+#    Gordon Growth: TV = FCF in year-6 / (cost_of_eq – terminal_growth)
+# ------------------------------------------------------------------
+terminal_fcfe = proj_df.iloc[-1]["FCFE"] * (1 + TERMINAL_GROWTH)
+terminal_value = terminal_fcfe / (cost_of_eq - TERMINAL_GROWTH)
+terminal_pv = terminal_value * 1 / ((1 + cost_of_eq) ** 5)  # discount 5 yrs
 
-    print("\n--- 3. VALUATION SUMMARY ---")
-    print(f"Sum of PV (Years 1-5):    ${sum_pv_ufcf:.1f} M")
-    print(f"PV of Terminal Value:    ${pv_terminal_value:.1f} M")
-    print(f"Total Enterprise Value:  ${enterprise_value:.1f} M")
-    print(f"Less: Net Debt:         -${net_debt:.1f} M")
-    print(f"Total Equity Value:      ${equity_value:.1f} M")
-    print(f"\nIMPLIED SHARE PRICE:     ${implied_share_price:.2f}")
-    
-    print("\n--- HIGH RETENTION RECAP ---")
-    print("1. We forecast how much raw cash (UFCF) the business makes for everyone.")
-    print("2. We bring all that future cash to today's value (Present Value).")
-    print("3. Subtract the debt to find the value of the shares (Equity Value).")
+# ------------------------------------------------------------------
+# 4. ADD UP TODAY'S VALUE  (core DCF step 3)
+# ------------------------------------------------------------------
+pv_five = proj_df["PV"].sum()
+enterprise_value = pv_five + terminal_pv
+equity_value = enterprise_value                       # no net-debt adj for banks
+implied_price = equity_value / SHARES_OUTSTANDING_M
+upside_downside = (implied_price - CURRENT_PRICE) / CURRENT_PRICE
 
-if __name__ == "__main__":
-    calculate_corporate_dcf()
+# ------------------------------------------------------------------
+# 5. PRINT A HUMAN STORY
+# ------------------------------------------------------------------
+print("\n"+"="*60)
+print(f"{TICKER}  Teaching DCF  ({dt.datetime.now().strftime('%Y-%m-%d')})")
+print("="*60)
+print(f"Cost of Equity: {cost_of_eq:.1%}  (rf={risk_free:.2%}  β={beta:.2f})")
+print(proj_df.to_string(index=False, float_format="%.0f"))
+print(f"\nPV FCFE yrs 1-5:  ${pv_five:,.0f}M")
+print(f"PV Terminal:      ${terminal_pv:,.0f}M")
+print(f"Implied Price:      ${implied_price:.2f}")
+print(f"Current Price:      ${CURRENT_PRICE:.2f}")
+print(f"Upside/(Downside):  {upside_downside:.1%}")
+
+# ------------------------------------------------------------------
+# 6. EXTRA INPUTS – safe places to add more detail
+# ------------------------------------------------------------------
+# 6a. More forecast years → change range(1, 6) to range(1, 11) and add
+#     extra growth assumptions for years 6-10 (usually lower).
+# 6b. Macro scenarios → duplicate the whole projection block with
+#     different growth drivers (bull / base / bear).
+# 6c. Monte-Carlo → replace growth & beta with random draws, run 10 k
+#     loops, store implied_price each time → histogram.
+# 6d. WACC for non-banks → add after-tax cost of debt, weights, etc.
+# ------------------------------------------------------------------
+
+# ------------------------------------------------------------------
+# 7. PURE-MATPLOTLIB PLOTS  (no seaborn needed)
+# ------------------------------------------------------------------
+if SAVE_PLOTS:
+    os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+    # 7a. Bar chart: FCFE
+    plt.figure(figsize=(5,3))
+    plt.bar(proj_df["Year"], proj_df["FCFE"], color="royalblue")
+    plt.title("Projected FCFE ($M)")
+    plt.tight_layout()
+    plt.savefig(f"{OUTPUT_FOLDER}/fcfe_bar.png", dpi=150)
+    plt.close()
+
+    # 7b. Cumulative PV
+    plt.figure(figsize=(5,3))
+    cum_pv = proj_df["PV"].cumsum()
+    plt.plot(proj_df["Year"], cum_pv, marker="o", color="darkgreen", label="PV cum.")
+    plt.axhline(equity_value, ls="--", color="grey", label="Total PV")
+    plt.title("Cumulative PV Build-up")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(f"{OUTPUT_FOLDER}/pv_cumul.png", dpi=150)
+    plt.close()
+
+    # 7c. Sensitivity heat-map (plain matplotlib)
+    fig, ax = plt.subplots(figsize=(5,4))
+    g_vals = [0.02, 0.025, TERMINAL_GROWTH, 0.035, 0.04]
+    r_vals = [cost_of_eq-0.02, cost_of_eq-0.01, cost_of_eq, cost_of_eq+0.01, cost_of_eq+0.02]
+    data = []
+    for g in g_vals:
+        row = []
+        for r in r_vals:
+            tv = (proj_df.iloc[-1]["FCFE"]*(1+g))/(r-g)
+            ev = pv_five + tv * 1/((1+cost_of_eq)**5)
+            row.append(ev/SHARES_OUTSTANDING_M)
+        data.append(row)
+
+    im = ax.imshow(data, cmap="RdYlGn", aspect="auto")
+    # labels
+    ax.set_xticks(range(len(r_vals))); ax.set_xticklabels([f"{r:.1%}" for r in r_vals])
+    ax.set_yticks(range(len(g_vals))); ax.set_yticklabels([f"{g:.1%}" for g in g_vals])
+    ax.set_xlabel("Cost of Equity"); ax.set_ylabel("Terminal Growth")
+    ax.set_title("Implied Price Sensitivity")
+
+    # annotate cells
+    for i in range(len(g_vals)):
+        for j in range(len(r_vals)):
+            ax.text(j, i, f"{data[i][j]:.1f}", ha="center", va="center", fontsize=8)
+    plt.tight_layout()
+    plt.savefig(f"{OUTPUT_FOLDER}/sensitivity_plain.png", dpi=150)
+    plt.show()
