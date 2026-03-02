@@ -198,3 +198,29 @@ Not every company is a good LBO target. PE firms look for:
 **The PE Goal:** Turn $300M of equity into $600M+ by using debt as a lever.
 
 **Python Tool**: [Run LBO_Model.py](./Python/LBO_Model.py) to see how the three levers translate into returns.
+
+---
+
+## Outlook & The Real World
+
+### What We Didn't Cover
+
+Real-world LBO models in investment banks are significantly more complex than what we've built here. A few key concepts you'll encounter in professional settings:
+
+- **Management Rollovers:** Often, the existing management team keeps a portion of their equity in the deal (reinvesting alongside the PE firm) to align incentives.
+- **Dividend Recaps:** In some deals, the PE firm takes out additional debt years after the buyout to pay themselves a dividend—extracting cash without selling the company.
+- **Complex Debt Structures:** Beyond Senior and Mezzanine debt, you'll see Unitranche (combined loan), PIK (Paid-in-Kind) interest, andcovenant packages that restrict the company from taking certain actions.
+
+### The Complexity Trap
+
+> **💡 Real Talk:** In a live deal, the Excel model isn't 100 rows—it's often 50+ tabs with circular references that require iterative solving. One small change to "Assumptions" can ripple through the entire model.
+
+### Recommended Next Steps
+
+- **Read:** *Barbarians at the Gate* by Bryan Burrough – The definitive story of the RJR Nabisco LBO, showing how deals really get done.
+- **Practice:** Explore a professional LBO model template from **Macabacus** or **Wall Street Prep** to see the level of detail professional banks use.
+- **Deep Dive:** Study **Dividend Recaps** and **Secondary Buyouts** as the next evolution of the LBO lifecycle.
+
+---
+
+*Last updated: 2026 | Built for learning and interview prep*

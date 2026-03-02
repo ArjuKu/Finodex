@@ -412,3 +412,30 @@ Investment Banking valuation is about finding the **clearing price** for a deal.
 **High Retention Recap:** If you want to buy the whole factory, look at the neighbor's price, make sure the machines produce enough cash to justify the total "Transaction Price Tag," and ensure the deal makes your shareholders richer, not poorer.
 
 **Python Tool**: [Run Corporate_DCF.py](./Python/Corporate_DCF.py)
+
+---
+
+## Outlook & The Real World
+
+### What We Didn't Cover
+
+Professional valuation in investment banking goes far beyond the three methods we've covered here. In a real "Pitch Book," you'll see:
+
+- **Football Field Chart:** A summary visualization showing the valuation range from all methods (Precedents, DCF, Comps) side-by-side.
+- **SOTP (Sum-of-the-Parts):** Valuing each business segment separately for conglomerates with different operations.
+- **Liquidation Value:** For companies in distress, what would they fetch if sold piece-by-piece?
+- **Three-Statement Modeling:** In reality, a DCF is built on top of a fully integrated financial model (Income Statement, Balance Sheet, Cash Flow all linked).
+
+### The Complexity Trap
+
+> **💡 Real Talk:** In a live deal, you're rarely "choosing" one valuation method. You're building all of them and defending your range to the Managing Director. The answer is rarely a single number—it's a range based on sensitivity analysis.
+
+### Recommended Next Steps
+
+- **Data:** **Aswath Damodaran's (NYU Stern) Data Library** – The gold standard for industry-specific Betas, Equity Risk Premia, and valuation templates.
+- **Practice:** **Corporate Finance Institute (CFI)** and **Wall Street Prep** – Professional courses that take you from "beginner" to "analyst-ready" in Excel.
+- **Templates:** Explore Damodaran's free spreadsheet library to see how professionals build DCF models for different sectors.
+
+---
+
+*Last updated: 2026 | Built for learning and interview prep*
