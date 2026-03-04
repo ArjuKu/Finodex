@@ -5,24 +5,29 @@
 ---
 
 ## Table of Contents
+
 1. [The "Lemonade Stand" Metaphor](#the-lemonade-stand-metaphor)
 2. [The Equity Research Dictionary](#the-equity-research-dictionary)
-3. [Method 1: P/E Ratio (Relative Valuation)](#method-1-pe-ratio)
-4. [Method 2: DCF (Discounted Cash Flow)](#method-2-dcf)
-5. [Method 3: Dividend Discount Model](#method-3-dividend-discount-model)
-6. [Method 4: Sum-of-the-Parts (SOTP)](#method-4-sum-of-the-parts-sotp)
+3. [Method 1 - P/E Ratio (Relative Valuation)](#method-1---pe-ratio-relative-valuation)
+4. [Method 2 - DCF (Discounted Cash Flow)](#method-2---dcf-discounted-cash-flow)
+5. [Method 3 - Dividend Discount Model](#method-3---dividend-discount-model)
+6. [Method 4 - Sum-of-the-Parts (SOTP)](#method-4---sum-of-the-parts-sotp)
 7. [Sensitivity Analysis](#sensitivity-analysis)
-8. [Summary](#summary)
+8. [Final Recap](#final-recap)
 
 ---
 
 ## 1. The "Lemonade Stand" Metaphor
+
 Imagine you want to buy a lemonade stand.
+
 - If the stand makes **$100 profit per year**, and you pay **$1,000** for it, it will take you **10 years** to earn back your money.
 - In the stock market, this is called the **P/E Ratio** (Price-to-Earnings).
 - A researcher asks: "Is this stand worth $1,000, or is it really worth $800 because there's a new coffee shop opening nearby?"
 
 **The Goal:** Find stocks that are **worth more than the price** the market is asking.
+
+> **💡 Analyst Note:** In Equities, we call this the **"Margin of Safety"**—the difference between Intrinsic Value and Market Price. Benjamin Graham, the father of value investing, compared it to buying a $100 bill for $70.
 
 ---
 
@@ -76,10 +81,37 @@ Where:
 
 ---
 
-## 4. Method 2: DCF (Discounted Cash Flow)
+### 📊 Multiples Deep-Dive: Which One to Use?
+
+| Multiple | Formula | Best For | Why It Works |
+|---------|---------|----------|--------------|
+| **P/E** | Price ÷ EPS | Mature, profitable companies | Earnings are the "final score" of a business. |
+| **Forward P/E** | Price ÷ Next Year EPS | Growth stocks | Based on future earnings, not past. |
+| **PEG** | P/E ÷ Growth Rate | Comparing growth stocks | Normalizes P/E for high growth. |
+| **P/S** | Price ÷ Revenue | High-growth tech, retail | Revenue is harder to manipulate than earnings. |
+| **P/B** | Price ÷ Book Value | Banks, financial institutions | Book value is tangible; earnings are volatile for banks. |
+| **EV/EBITDA** | EV ÷ EBITDA | Manufacturing, industrials | Removes effects of capital structure and accounting. |
+
+> **💡 Analyst Note (CFA Curriculum):** P/E is most reliable when applied to companies with stable capital structures and positive earnings. For high-growth tech companies, P/S or PEG ratios are more appropriate because earnings may be negative or volatile.
+
+---
+
+## 4. Method 2 - DCF (Discounted Cash Flow)
 
 ### The Concept
+
 A dollar today is worth more than a dollar tomorrow. We forecast future cash flows and bring them back to today's value.
+
+### FCFF vs. FCFE: Which One to Use?
+
+| Metric | FCFF (Free Cash Flow to Firm) | FCFE (Free Cash Flow to Equity) |
+|--------|-------------------------------|--------------------------------|
+| **Definition** | Cash available to ALL investors (debt + equity) | Cash available to SHAREHOLDERS only |
+| **Use Case** | Investment Banking (Valuing the whole company) | Equity Research (Valuing the stock) |
+| **Starting Point** | EBIT × (1 - Tax Rate) | Net Income |
+| **Formula** | NOPAT + D&A - CapEx - ΔNWC | Net Income + D&A - CapEx - ΔNWC + Net Borrowing |
+
+> **💡 Analyst Note:** In Equity Research, we typically use **FCFE** because we're buying stock, not the entire company. However, the **FCFF** approach (used in IB) is also valid—it gives you Enterprise Value, which you then subtract Net Debt to get Equity Value.
 
 ### Formula (Simplified)
 ```
@@ -199,10 +231,41 @@ P_0 = $2.10 ÷ (0.10 - 0.05) = $42.00
 ```
 
 ### Two-Stage DDM
+
 For companies with high initial growth that eventually stabilize:
+
 ```
 P_0 = Σ [D_0 × (1+g_s)^t ÷ (1+r)^t] + D_n × (1+g_L) ÷ ((r - g_L) × (1+r)^n)
 ```
+
+---
+
+### 📊 DDM Worked Example: Two-Stage Model
+
+A company pays $2.00 dividend today, grows at 15% for 5 years, then settles at 5% forever. Required return is 10%.
+
+| Year | Dividend Growth | Dividend | PV Factor (10%) | PV of Dividend |
+|------|----------------|----------|-----------------|----------------|
+| 1 | 15% | $2.30 | 0.909 | $2.09 |
+| 2 | 15% | $2.65 | 0.826 | $2.19 |
+| 3 | 15% | $3.04 | 0.751 | $2.28 |
+| 4 | 15% | $3.50 | 0.683 | $2.39 |
+| 5 | 15% | $4.02 | 0.621 | $2.50 |
+| **PV (High Growth)** | | | | **$11.45** |
+
+**Terminal Value (Year 5):**
+```
+D_6 = $4.02 × 1.05 = $4.22
+Terminal Value = $4.22 ÷ (0.10 - 0.05) = $84.40
+PV of Terminal = $84.40 × 0.621 = $52.41
+```
+
+**Total Intrinsic Value:**
+```
+P_0 = $11.45 + $52.41 = $63.86
+```
+
+> **💡 Analyst Note:** The Two-Stage DDM is commonly used for companies in transition—e.g., a tech company shifting from high-growth startup to mature stable growth.
 
 ---
 
@@ -235,13 +298,49 @@ If the stock is trading at $50 but your analysis shows it's worth $67 in the wor
 
 ---
 
-## 8. Summary
-Equity Research is about finding a **Margin of Safety**.
-1. Use the P/E ratio to see how expensive the stock is compared to its peers.
-2. Use DCF to find the "True Value" (Intrinsic Value).
-3. Use sensitivity analysis to test different scenarios.
-4. Only buy if the Intrinsic Value is **significantly higher** than the Market Price.
+### 📊 Buy/Hold/Sell: The Analyst Recommendation Matrix
+
+| Upside vs. Current Price | Recommendation | Rationale |
+|-------------------------|----------------|-----------|
+| > +20% | **STRONG BUY** | Significant margin of safety |
+| +10% to +20% | **BUY** | Solid upside, acceptable risk |
+| 0% to +10% | **HOLD** | Fair value; no obvious bargain |
+| -10% to 0% | **UNDERPERFORM / SELL** | Trading above intrinsic value |
+| < -10% | **STRONG SELL** | Significant overvaluation |
+
+> **💡 Analyst Note:** Different Wall Street houses use different naming conventions. Some use "Buy/Sell/Hold," others use "Outperform/Neutral/Underperform." The math is the same: **Upside = (Intrinsic Value ÷ Current Price) - 1**.
+
+---
+
+## Final Recap
+
+🏃 **Executive Summary:**
+
+1. **P/E Ratio:** "Time to payback." Compare within industry; use Forward P/E for growth stocks.
+2. **DCF:** Discount future cash flows (FCFE or FCFF) to find Intrinsic Value.
+3. **DDM:** For dividend-paying companies; use Two-Stage for high-growth phase.
+4. **Margin of Safety:** Only buy if Intrinsic Value > Market Price by > 20%.
 
 **High Retention Recap:** Think of buying a stock like buying a lemonade stand. Calculate the P/E to see how many years it takes to pay you back, use the DCF to forecast future cash and bring it to today's dollars, and only buy if you're getting a deal (Margin of Safety).
 
 **Python Tool**: [Run Equity_DCF.py](./Python/Equity_DCF.py)
+
+---
+
+## Outlook & The Real World
+
+### What We Didn't Cover
+
+- **Fama-French 3-Factor Model:** Explains returns using Size (SMB), Value (HML), and Market (MKT) factors.
+- **Reverse DCF:** Finding the growth rate "implied" by the current stock price.
+- **Earnings Power Value (EPV):** A simplified DCF using normalized earnings instead of forecasting.
+
+### Recommended Next Steps
+
+- **CFA Level I:** Study "Equity Valuation" and "Discounted Cash Flow" sections.
+- **Practice:** Use Yahoo Finance to pull real multiples for companies you follow.
+- **Read:** *Security Analysis* by Benjamin Graham and David Dodd—the classic text on intrinsic value.
+
+---
+
+*Last updated: 2026 | Built for learning and interview prep*
