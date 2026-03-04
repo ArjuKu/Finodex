@@ -38,15 +38,16 @@ The Investment Focus: Stock picking, fundamental analysis, and market valuation.
 
 ### [Commodities](./Commodities/)
 The Asset Focus: Spot prices, futures, and valuing physical resources.
-- **Valuation_Methods.md**: Spot Value & Resource NAV
-- **Pricing_Models.md**: Forward Pricing & Cost of Carry
+- **The_Landscape.md**: Physical vs. Paper, the Commodity Chain, and Market Players
+- **Valuation_Methods.md**: Spot Value, Resource NAV, In-Situ Value & Grade
+- **Pricing_Models.md**: Forward Pricing, Cost of Carry, Contango & Backwardation
 - **Python/**: Resource_NAV.py, Forward_Pricing.py
 
 ---
 
 ## 🚀 Quick Start
 
-1. **Start with The Landscape**: Read [Investment-Banking/The_Landscape.md](./Investment-Banking/The_Landscape.md) or [Equities/The_Landscape.md](./Equities/The_Landscape.md) to understand the difference between IB and ER.
+1. **Start with The Landscape**: Read [Investment-Banking/The_Landscape.md](./Investment-Banking/The_Landscape.md), [Equities/The_Landscape.md](./Equities/The_Landscape.md), or [Commodities/The_Landscape.md](./Commodities/The_Landscape.md) to understand the difference between IB, ER, and Commodities trading.
 2. **Pick your path**: Choose Investment-Banking, Equities, or Commodities.
 3. **Read the guides**: Start with Valuation_Methods.md for the foundation.
 4. **Run the Python models**: Each script has a clear "INPUTS" section.
@@ -89,4 +90,4 @@ Finodex provides Python models for learning, but for professional Excel template
 
 ---
 
-*Last updated: 2024 | Built for learning and interview prep*
+*Last updated: 2026 | Built for learning and interview prep*
